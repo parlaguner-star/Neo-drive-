@@ -1,0 +1,212 @@
+[
+  {
+    "id": "car-1",
+    "type": "car",
+    "name": "Toyota Corolla",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.120
+  },
+  {
+    "id": "car-2",
+    "type": "car",
+    "name": "Volkswagen Golf",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.135
+  },
+  {
+    "id": "car-3",
+    "type": "car",
+    "name": "Renault Clio",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.115
+  },
+  {
+    "id": "car-4",
+    "type": "car",
+    "name": "Fiat Egea",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.110
+  },
+  {
+    "id": "car-5",
+    "type": "car",
+    "name": "Hyundai i20",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.118
+  },
+  {
+    "id": "car-6",
+    "type": "car",
+    "name": "Ford Focus",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.140
+  },
+  {
+    "id": "car-7",
+    "type": "car",
+    "name": "Opel Astra",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.125
+  },
+  {
+    "id": "car-8",
+    "type": "car",
+    "name": "Peugeot 301",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.108
+  },
+  {
+    "id": "car-9",
+    "type": "car",
+    "name": "Nissan Qashqai",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.155
+  },
+  {
+    "id": "car-10",
+    "type": "car",
+    "name": "Honda Civic",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.128
+  },
+  {
+    "id": "car-11",
+    "type": "car",
+    "name": "Mazda 3",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.130
+  },
+  {
+    "id": "car-12",
+    "type": "car",
+    "name": "Skoda Octavia",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.122
+  },
+  {
+    "id": "car-13",
+    "type": "car",
+    "name": "Seat Leon",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.136
+  },
+  {
+    "id": "car-14",
+    "type": "car",
+    "name": "Dacia Sandero",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.110
+  },
+  {
+    "id": "car-15",
+    "type": "car",
+    "name": "Citroen C4",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.132
+  },
+  {
+    "id": "car-16",
+    "type": "car",
+    "name": "Kia Sportage",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.148
+  },
+  {
+    "id": "car-17",
+    "type": "car",
+    "name": "BMW 3 Serisi",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.175
+  },
+  {
+    "id": "car-18",
+    "type": "car",
+    "name": "Mercedes C Serisi",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.155
+  },
+  {
+    "id": "car-19",
+    "type": "car",
+    "name": "Audi A4",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.172
+  },
+  {
+    "id": "car-20",
+    "type": "car",
+    "name": "Volvo S60",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.168
+  },
+  {
+    "id": "moto-1",
+    "type": "motorcycle",
+    "name": "Honda PCX 125",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.055
+  },
+  {
+    "id": "moto-2",
+    "type": "motorcycle",
+    "name": "Yamaha NMAX 155",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.065
+  },
+  {
+    "id": "moto-3",
+    "type": "motorcycle",
+    "name": "Suzuki Address 110",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.050
+  },
+  {
+    "id": "moto-4",
+    "type": "motorcycle",
+    "name": "Kymco Agility 125",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.058
+  },
+  {
+    "id": "moto-5",
+    "type": "motorcycle",
+    "name": "Kawasaki Ninja 300",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.070
+  },
+  {
+    "id": "moto-6",
+    "type": "motorcycle",
+    "name": "Honda CB 125F",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.052
+  },
+  {
+    "id": "moto-7",
+    "type": "motorcycle",
+    "name": "Yamaha YBR 125",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.053
+  },
+  {
+    "id": "moto-8",
+    "type": "motorcycle",
+    "name": "Bajaj Pulsar NS160",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.062
+  },
+  {
+    "id": "moto-9",
+    "type": "motorcycle",
+    "name": "Mondial 150 MH",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.060
+  },
+  {
+    "id": "moto-10",
+    "type": "motorcycle",
+    "name": "Kanuni Toros 250",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.075
+  }
+]

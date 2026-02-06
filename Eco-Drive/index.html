@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Eco Drive - Aracınızın karbon ayak izini hesaplayın ve kaç ağaç dikilmesi gerektiğini öğrenin. Tech4Peace Jr. ve Yeşil Okul Kulübü işbirliği projesi.">
+  <meta name="keywords" content="karbon ayak izi, sürdürülebilirlik, ağaç dikimi, çevre, Tech4Peace, Yeşil Okul">
+  <title>Eco Drive - Karbon Ayak İzi Hesaplama</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./assets/css/custom.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-logo">
+        <img src="./assets/img/Acıhs_logo.png" alt="Acıhs Robotics Logo">
+        Eco <span>Drive</span>
+      </a>
+
+      <button class="navbar-toggle" aria-label="Menüyü aç/kapat">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="navbar-menu">
+        <li><a href="index.html">Hesaplama</a></li>
+        <li><a href="about-team.html">Takım</a></li>
+        <li><a href="about-green-school.html">Yeşil Okul</a></li>
+        <li><a href="project.html">Proje</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Arabanız Kaç Ağaç İster?</h1>
+    <p>
+      Tech4Peace Jr. ve Yeşil Okul Kulübü'nün hazırladığı bu siteyle, aracınız için
+      kaç ağaç dikilmesi gerektiğini hesaplayabilirsiniz. Hesaplama yaptıktan sonra
+      ağaçları ekranda görebilirsiniz!
+    </p>
+    <div class="hero-illustration">
+      <div class="tree-icon" style="font-size: 4rem;">🌳</div>
+      <div class="cloud-icon" style="font-size: 3rem;">☁️</div>
+      <div class="sun-icon" style="font-size: 3.5rem;">☀️</div>
+    </div>
+  </section>
+
+  <!-- Main Content - Two Column Layout -->
+  <div class="main-content">
+    <!-- Left Column: Calculator -->
+    <section class="calculator-section">
+      <div class="calculator-card">
+        <h2>Karbon Ayak İzi Hesaplayıcı</h2>
+
+        <form id="calculatorForm">
+          <!-- Araç Tipi -->
+          <div class="form-group">
+            <label for="vehicleType" class="form-label">Araç Tipi</label>
+            <select id="vehicleType" class="form-select" required>
+              <option value="">Araç tipi seçin...</option>
+              <option value="car">Araba</option>
+              <option value="motorcycle">Motosiklet</option>
+            </select>
+          </div>
+
+          <!-- Araç Modeli -->
+          <div class="form-group">
+            <label for="vehicleModel" class="form-label">Araç Modeli</label>
+            <select id="vehicleModel" class="form-select" disabled required>
+              <option value="">Önce araç tipi seçin...</option>
+            </select>
+          </div>
+
+          <!-- Yıllık Kilometre -->
+          <div class="form-group">
+            <label for="yearlyKm" class="form-label">Yıllık Kilometre</label>
+            <input type="number" id="yearlyKm" class="form-input" placeholder="Örn: 15000" min="1" max="100000"
+              required>
+            <p style="font-size: 0.875rem; color: var(--color-text-light); margin-top: 0.5rem;">
+              Aracınızla yılda ortalama kaç kilometre yol aldığınızı girin.
+            </p>
+          </div>
+
+          <!-- Hesapla Butonu -->
+          <button type="submit" class="btn-primary">
+            Ağaçları Hesapla
+          </button>
+        </form>
+
+        <!-- Sonuç Bölümü -->
+        <div id="resultSection" class="result-section">
+          <div class="result-number" id="resultNumber">0</div>
+          <div class="result-text" id="resultText">
+            Hesaplama sonucunuz burada görünecek.
+          </div>
+          <div class="result-note">
+            * Hesaplama değerleri tahmini olup, proje geliştikçe güncellenecektir.
+          </div>
+          <div style="text-align: center; margin-top: 1.5rem;">
+            <a href="#" class="btn-secondary" onclick="alert('Bağış linki yakında eklenecek!'); return false;">
+              Açı Ormanı'na Bağış İçin Bilgi Al
+            </a>
+          </div>
+        </div>
+
+        <!-- Ağaç Görselleştirme Bölümü -->
+        <div id="treeVisualization" class="tree-visualization">
+          <h3
+            style="text-align: center; color: var(--color-primary); font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">
+            Ağaçları Gör!
+          </h3>
+          <div id="treeGrid" class="tree-grid"></div>
+          <div id="treeInfo" class="tree-info"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Info Cards -->
+    <section class="info-cards">
+      <!-- Tech4Peace Jr. Card -->
+      <div class="info-card">
+        <div class="info-card-icon">⚙️</div>
+        <h3>Tech4Peace Jr. Takımı</h3>
+        <p>
+          FTC robotik yarışmalarına katılan öğrenci takımımız, teknoloji ile sosyal sorumluluk projelerini bir araya
+          getiriyor.
+        </p>
+        <a href="about-team.html" class="btn-secondary">Daha Fazla Bilgi</a>
+      </div>
+
+      <!-- Yeşil Okul Card -->
+      <div class="info-card">
+        <div class="info-card-icon">🌿</div>
+        <h3>Yeşil Okul Kulübü</h3>
+        <p>
+          Okulumuzda sürdürülebilirlik ve çevre bilinci konusunda farkındalık yaratan öğrenci sosyal sorumluluk grubu.
+        </p>
+        <a href="about-green-school.html" class="btn-secondary">Daha Fazla Bilgi</a>
+      </div>
+
+      <!-- Project Pangea Card -->
+      <div class="info-card">
+        <div class="info-card-icon">🌍</div>
+        <h3>Eco Drive Projesi</h3>
+        <p>
+          Project Pangea'nın bir parçası olan bu projede, öğrenciler veri topluyor ve sürdürülebilir çözümler
+          geliştiriyor.
+        </p>
+        <a href="project.html" class="btn-secondary">Projeyi Öğren</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>
+        Bu website, <strong>Tech4Peace Jr. FTC Takımı</strong> ve <strong>Yeşil Okul Kulübü</strong>
+        öğrencileri tarafından geliştirilmiştir.
+      </p>
+      <p>
+        <!-- Gerçek Instagram linki eklenecek -->
+        Instagram: <a href="#" target="_blank" rel="noopener">@acihsrobotics</a>
+      </p>
+      <p style="font-size: 0.875rem; margin-top: 1rem; color: #9ca3af;">
+        © 2024 Eco Drive | Project Pangea
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button (hidden by default) -->
+  <button id="scrollToTop" style="
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background-color: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.2s;
+      z-index: 100;
+    " onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Yukarı çık">
+    ↑
+  </button>
+
+  <!-- JavaScript -->
+  <script src="./assets/js/animations.js"></script>
+  <script src="./assets/js/calculator.js"></script>
+  <script src="./assets/js/ui.js"></script>
+</body>
+
+</html>
