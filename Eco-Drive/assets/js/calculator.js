@@ -1,7 +1,5 @@
-// Eco Drive - Hesaplama Mantığı
-// Bu dosya araç karbon salımı ve ağaç sayısı hesaplamalarını yapar
-
-let vehiclesData = [];
+// Araç verisi global değişkeni
+window.vehiclesData = [];
 
 // Fallback: Eğer JSON yüklenemezse kullanılacak güncel Türkiye verileri
 const FALLBACK_VEHICLES = [
@@ -59,34 +57,48 @@ const FALLBACK_VEHICLES = [
  * Sayfa yüklendiğinde araç verilerini çeker
  */
 async function loadVehicles() {
+  console.log('Araç verileri yüklenmeye başlanıyor...');
   try {
     const paths = [
       './data/vehicles.json',
       'data/vehicles.json',
-      '/data/vehicles.json'
+      '/Eco-Drive/data/vehicles.json' // Added potential GitHub Pages subfolder path
     ];
 
     let loaded = false;
+    const cacheBuster = `?t=${Date.now()}`;
+
     for (const path of paths) {
       try {
-        const response = await fetch(path);
+        const finalPath = path + cacheBuster;
+        console.log(`Denenecek yol: ${finalPath}`);
+        const response = await fetch(finalPath);
         if (response.ok) {
-          vehiclesData = await response.json();
+          window.vehiclesData = await response.json();
+          console.log('JSON verisi başarıyla yüklendi.');
           loaded = true;
           break;
+        } else {
+          console.warn(`Yükleme başarısız (${response.status}): ${path}`);
         }
-      } catch (e) { continue; }
+      } catch (e) {
+        console.error(`Yol denemesinde hata: ${path}`, e);
+        continue;
+      }
     }
 
-    if (!loaded) vehiclesData = FALLBACK_VEHICLES;
+    if (!loaded) {
+      console.log('Canlı veri yüklenemedi, yedek verilere (FALLBACK) geçiliyor...');
+      window.vehiclesData = FALLBACK_VEHICLES;
+    }
 
     // Verileri işle (Marka ve Model'i ayır)
     processVehiclesData();
-
     initializeFilters();
+    console.log('Filtreler başarıyla başlatıldı.');
   } catch (error) {
-    console.error('Araç verileri yüklenirken hata oluştu:', error);
-    vehiclesData = FALLBACK_VEHICLES;
+    console.error('Araç verileri yüklenirken kritik hata:', error);
+    window.vehiclesData = FALLBACK_VEHICLES;
     processVehiclesData();
     initializeFilters();
   }
@@ -96,7 +108,11 @@ async function loadVehicles() {
  * Verileri işle (Marka ve Model'i ayır)
  */
 function processVehiclesData() {
-  vehiclesData = vehiclesData.map(v => {
+  if (!Array.isArray(window.vehiclesData)) {
+    console.error('vehiclesData bir dizi değil:', window.vehiclesData);
+    window.vehiclesData = FALLBACK_VEHICLES;
+  }
+  window.vehiclesData = window.vehiclesData.map(v => {
     const parts = v.name.split(' ');
     return {
       ...v,
@@ -115,7 +131,7 @@ function initializeFilters() {
   if (!brandSelect || !yearSelect) return;
 
   // Markaları doldur
-  const brands = [...new Set(vehiclesData.map(v => v.brand))].sort();
+  const brands = [...new Set(window.vehiclesData.map(v => v.brand))].sort();
   brandSelect.innerHTML = `<option value="">${t.select_brand || 'Marka seçin...'}</option>`;
   brands.forEach(brand => {
     const opt = document.createElement('option');
@@ -155,7 +171,7 @@ function updateVehicleModels() {
     return;
   }
 
-  const models = [...new Set(vehiclesData.filter(v => v.brand === brand).map(v => v.model))].sort();
+  const models = [...new Set(window.vehiclesData.filter(v => v.brand === brand).map(v => v.model))].sort();
   models.forEach(model => {
     const opt = document.createElement('option');
     opt.value = model;
@@ -186,7 +202,7 @@ function updateFuelTypes() {
   }
 
   // SADECE seçilen marka ve modele ait yakıt tiplerini filtrele
-  const availableVehicles = vehiclesData.filter(v => v.brand === brand && v.model === model);
+  const availableVehicles = window.vehiclesData.filter(v => v.brand === brand && v.model === model);
 
   availableVehicles.forEach(v => {
     const opt = document.createElement('option');
@@ -222,7 +238,7 @@ function handleCalculation(event) {
     return;
   }
 
-  const selectedVehicle = vehiclesData.find(v => v.id === vehicleId);
+  const selectedVehicle = window.vehiclesData.find(v => v.id === vehicleId);
   if (!selectedVehicle) return;
 
   const treesNeeded = calculateTrees(selectedVehicle.emissionPerKm, yearlyKm);

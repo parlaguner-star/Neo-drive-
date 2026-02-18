@@ -431,7 +431,7 @@ function updateUI() {
     });
 
     // Re-initialize calculator filters if they exist
-    if (typeof initializeFilters === 'function' && typeof vehiclesData !== 'undefined' && vehiclesData.length > 0) {
+    if (typeof initializeFilters === 'function' && typeof window.vehiclesData !== 'undefined' && window.vehiclesData.length > 0) {
         initializeFilters();
     }
 }
