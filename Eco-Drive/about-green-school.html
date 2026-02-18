@@ -13,6 +13,7 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/custom.css">
+  <script src="./assets/js/i18n.js"></script>
 </head>
 
 <body>
@@ -31,180 +32,222 @@
         <span></span>
       </button>
 
-      <ul class="navbar-menu">
-        <li><a href="index.html">Hesaplama</a></li>
-        <li><a href="about-team.html">Takım</a></li>
-        <li><a href="about-green-school.html">Yeşil Okul</a></li>
-        <li><a href="project.html">Proje</a></li>
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="index.html" data-i18n="nav_calc">Hesaplama</a></li>
+        <li><a href="about-team.html" data-i18n="nav_team">Tech4Peace</a></li>
+        <li><a href="about-green-school.html" data-i18n="nav_green">Yeşil Okul</a></li>
+        <li><a href="project.html" data-i18n="nav_project">Proje</a></li>
+        <li class="lang-switcher">
+          <button onclick="setLanguage('tr')" class="lang-btn" data-lang="tr" aria-label="Türkçe">TR</button>
+          <span aria-hidden="true">/</span>
+          <button onclick="setLanguage('en')" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </li>
       </ul>
     </div>
   </nav>
 
   <!-- Content Page -->
-  <section class="content-page">
+  <main id="main-content" class="content-page">
     <div class="content-card">
-      <h1>Yeşil Okul Kulübü</h1>
+      <h1 data-i18n="nav_green">Yeşil Okul Kulübü</h1>
 
-      <h2>Amacımız</h2>
-      <p>
-        Yeşil Okul Kulübü olarak temel amacımız; öğrencilerde çevresel sorunlara karşı kalıcı bir bilinç ve sorumluluk duygusu geliştirmek, sürdürülebilir yaşam anlayışını günlük hayatın bir parçası hâline getirmektir. İklim değişikliği, çevre kirliliği, erozyon ve doğal kaynakların hızla tükenmesi gibi küresel sorunların yalnızca çevresel değil; aynı zamanda toplumsal ve ekonomik etkileri olduğunun farkındayız. Bu nedenle sürdürülebilirliği bütüncül bir bakış açısıyla ele alıyor ve çevre sorunlarının neden–sonuç ilişkilerini doğru şekilde anlaşılır kılmayı hedefliyoruz.
+      <h2 data-i18n="green_h2_1">Amacımız</h2>
+      <p data-i18n="green_p1">
+        Yeşil Okul Kulübü olarak temel amacımız; öğrencilerde çevresel sorunlara karşı kalıcı bir bilinç ve sorumluluk
+        duygusu geliştirmek, sürdürülebilir yaşam anlayışını günlük hayatın bir parçası hâline getirmektir. İklim
+        değişikliği, çevre kirliliği, erozyon ve doğal kaynakların hızla tükenmesi gibi küresel sorunların yalnızca
+        çevresel değil; aynı zamanda toplumsal ve ekonomik etkileri olduğunun farkındayız. Bu nedenle sürdürülebilirliği
+        bütüncül bir bakış açısıyla ele alıyor ve çevre sorunlarının neden–sonuç ilişkilerini doğru şekilde anlaşılır
+        kılmayı hedefliyoruz.
       </p>
-      <p>
-        Kulübümüz, bireysel davranışların çevre üzerindeki etkisini somut örneklerle ortaya koyarak geri dönüşüm, enerji ve su tasarrufu, çevre dostu ulaşım ve bilinçli tüketim alışkanlıklarının yaygınlaştırılmasını amaçlamaktadır. Bu doğrultuda öğrencilerin yalnızca bilgi sahibi olmalarını değil, aynı zamanda çevreyi korumaya yönelik aktif sorumluluk almalarını teşvik ediyoruz. Sahada gerçekleştirilen etkinlikler, eğitim sunumları ve farkındalık çalışmalarıyla öğrenilen bilgilerin kalıcı ve uygulanabilir olmasını önemsiyoruz.
+      <p data-i18n="green_p2">
+        Kulübümüz, bireysel davranışların çevre üzerindeki etkisini somut örneklerle ortaya koyarak geri dönüşüm, enerji
+        ve su tasarrufu, çevre dostu ulaşım ve bilinçli tüketim alışkanlıklarının yaygınlaştırılmasını amaçlamaktadır.
+        Bu doğrultuda öğrencilerin yalnızca bilgi sahibi olmalarını değil, aynı zamanda çevreyi korumaya yönelik aktif
+        sorumluluk almalarını teşvik ediyoruz. Sahada gerçekleştirilen etkinlikler, eğitim sunumları ve farkındalık
+        çalışmalarıyla öğrenilen bilgilerin kalıcı ve uygulanabilir olmasını önemsiyoruz.
       </p>
-      <p>
-        Eco Drive projesi kapsamında ise karbon ayak izinin azaltılmasına yönelik farkındalık oluşturmayı, araç kullanımının çevre üzerindeki etkilerini görünür kılmayı ve bireylerin daha bilinçli ulaşım tercihleri yapmalarını sağlamayı hedefliyoruz. Teknoloji ve çevre bilincini bir araya getiren bu proje sayesinde, sürdürülebilir bir geleceğin ancak bilinçli bireylerin ortak çabasıyla mümkün olduğuna inanıyoruz. Yeşil Okul Kulübü olarak amacımız; doğaya saygılı, çözüm odaklı düşünen ve çevresel sorumluluk bilinci gelişmiş bireyler yetiştirerek daha yaşanabilir bir dünya için katkı sağlamaktır.
+      <p data-i18n="green_p3">
+        Eco Drive projesi kapsamında ise karbon ayak izinin azaltılmasına yönelik farkındalık oluşturmayı, araç
+        kullanımının çevre üzerindeki etkilerini görünür kılmayı ve bireylerin daha bilinçli ulaşım tercihleri
+        yapmalarını sağlamayı hedefliyoruz. Teknoloji ve çevre bilincini bir araya getiren bu proje sayesinde,
+        sürdürülebilir bir geleceğın ancak bilinçli bireylerin ortak çabasıyla mümkün olduğuna inanıyoruz. Yeşil Okul
+        Kulübü olarak amacımız; doğaya saygılı, çözüm odaklı düşünen ve çevresel sorumluluk bilinci gelişmiş bireyler
+        yetiştirerek daha yaşanabilir bir dünya için katkı sağlamaktır.
       </p>
 
-      <h2>Ne Yapıyoruz?</h2>
-      <p>
+      <h2 data-i18n="green_h2_2">Ne Yapıyoruz?</h2>
+      <p data-i18n="green_p4">
         Yeşil Okul Kulübü olarak şunları yapıyoruz:
       </p>
       <ul>
-        <li><strong>Herkese Doğa Sevgisini Aşılıyoruz:</strong> Arkadaşlarımıza ve ailelerimize doğayı korumanın önemini
+        <li data-i18n="green_doing_li1"><strong>Herkese Doğa Sevgisini Aşılıyoruz:</strong> Arkadaşlarımıza ve
+          ailelerimize doğayı korumanın önemini
           anlatıyoruz</li>
-        <li><strong>Günlük Hayatta Çevre Dostu Oluyoruz:</strong> Daha az atık, daha çok geri dönüşüm!</li>
-        <li><strong>Farkındalık Yaratıyoruz:</strong> Karbon ayak izi, plastik kullanımı, enerji tasarrufu gibi
+        <li data-i18n="green_doing_li2"><strong>Günlük Hayatta Çevre Dostu Oluyoruz:</strong> Daha az atık, daha çok
+          geri dönüşüm!</li>
+        <li data-i18n="green_doing_li3"><strong>Farkındalık Yaratıyoruz:</strong> Karbon ayak izi, plastik kullanımı,
+          enerji tasarrufu gibi
           konularda herkesi bilgilendiriyoruz</li>
-        <li><strong>Okulumuzda Aktif Oluyoruz:</strong> Etkinlikler düzenliyor, projeler yapıyoruz</li>
-        <li><strong>Öğrendiklerimizi Paylaşıyoruz:</strong> Bildiklerimizi başkalarına da öğretiyoruz</li>
+        <li data-i18n="green_doing_li4"><strong>Okulumuzda Aktif Oluyoruz:</strong> Etkinlikler düzenliyor, projeler
+          yapıyoruz</li>
+        <li data-i18n="green_doing_li5"><strong>Öğrendiklerimizi Paylaşıyoruz:</strong> Bildiklerimizi başkalarına da
+          öğretiyoruz</li>
       </ul>
 
-      <h2>Yaptığımız Etkinlikler</h2>
-      <p>
+      <h2 data-i18n="green_h2_3">Yaptığımız Etkinlikler</h2>
+      <p data-i18n="green_p5">
         Okulumuzda ve çevremizde birçok eğlenceli etkinlik yapıyoruz:
       </p>
 
       <h3
-        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;">
+        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"
+        data-i18n="green_event1_h">
         Geri Dönüşüm Kampanyaları
       </h3>
-      <p>
+      <p data-i18n="green_event1_p">
         Kağıt, plastik ve cam atıkları ayrı topluyoruz. Herkese geri dönüşümün ne kadar
         önemli olduğunu anlatıyoruz!
       </p>
 
       <h3
-        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;">
+        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"
+        data-i18n="green_event2_h">
         Ağaç Dikme Günleri
       </h3>
-      <p>
+      <p data-i18n="green_event2_p">
         Birlikte ağaç dikiyoruz! Her öğrencinin en az bir ağaç dikmesini sağlıyoruz.
         Ağaçlar sayesinde havamız daha temiz oluyor!
       </p>
 
       <h3
-        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;">
+        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"
+        data-i18n="green_event3_h">
         Enerji Tasarrufu
       </h3>
-      <p>
+      <p data-i18n="green_event3_p">
         Okulda ve evlerde nasıl daha az enerji kullanabileceğimizi öğreniyoruz.
         Işıkları kapatmayı, gereksiz elektrik kullanmamayı hatırlatıyoruz!
       </p>
 
       <h3
-        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;">
+        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"
+        data-i18n="green_event4_h">
         Toplu Taşıma ve Bisiklet
       </h3>
-      <p>
+      <p data-i18n="green_event4_p">
         Arabalar çok karbon salıyor. Bunun yerine otobüs, metro veya bisiklet kullanmayı
         öğreniyoruz. Hem sağlıklı hem de çevre dostu!
       </p>
 
       <h3
-        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;">
+        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"
+        data-i18n="green_event5_h">
         Vakıf ve Sivil Toplum Kuruluşları ile İş Birlikleri
       </h3>
-      <p>
-        Yeşil Okul Kulübü olarak WWF, TEMA Vakfı ve benzeri çevre alanında faaliyet gösteren vakıf ve sivil toplum kuruluşlarının çalışmalarını takip ediyor; çevre bilincinin yaygınlaştırılması amacıyla bu kurumların projeleriyle uyumlu etkinlikler ve farkındalık çalışmaları yürütüyoruz. Bu iş birlikleri sayesinde çevresel sorunlara daha geniş bir perspektiften yaklaşarak, öğrencilerin sivil toplum bilinci kazanmasına katkı sağlıyoruz.
+      <p data-i18n="green_event5_p">
+        Yeşil Okul Kulübü olarak WWF, TEMA Vakfı ve benzeri çevre alanında faaliyet gösteren vakıf ve sivil toplum
+        kuruluşlarının çalışmalarını takip ediyor; çevre bilincinin yaygınlaştırılması amacıyla bu kurumların
+        projeleriyle uyumlu etkinlikler ve farkındalık çalışmaları yürütüyoruz. Bu iş birlikleri sayesinde çevresel
+        sorunlara daha geniş bir perspektiften yaklaşarak, öğrencilerin sivil toplum bilinci kazanmasına katkı
+        sağlıyoruz.
       </p>
 
       <h3
-        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;">
+        style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-top: 1.5rem; margin-bottom: 0.5rem;"
+        data-i18n="green_event6_h">
         Sahil Temizliği Etkinlikleri
       </h3>
-      <p>
-        Deniz ve kıyı ekosistemlerinin korunmasına katkı sağlamak amacıyla sahil temizliği etkinlikleri düzenliyoruz. Bu etkinliklerle çevre kirliliğinin doğa üzerindeki etkilerine dikkat çekiyor ve bireysel sorumluluğun önemini vurguluyoruz.
+      <p data-i18n="green_event6_p">
+        Deniz ve kıyı ekosistemlerinin korunmasına katkı sağlamak amacıyla sahil temizliği etkinlikleri düzenliyoruz. Bu
+        etkinliklerle çevre kirliliğinin doğa üzerindeki etkilerine dikkat çekiyor ve bireysel sorumluluğun önemini
+        vurguluyoruz.
       </p>
 
-      <h2>Eco Drive Projesinde Bizim Rolümüz</h2>
-      <p>
+      <h2 data-i18n="green_h2_4">Eco Drive Projesinde Bizim Rolümüz</h2>
+      <p data-i18n="green_p6">
         Eco Drive projesi bizim en sevdiğimiz projelerden biri! Tech4Peace Jr. takımı ile
         birlikte bu harika web sitesini yaptık.
       </p>
 
-      <p>
+      <p data-i18n="green_p7">
         <strong>Projede neler yaptık:</strong>
       </p>
       <ul>
-        <li><strong>Anket Yaptık:</strong> Okuldaki herkese hangi arabayı kullandıklarını sorduk. En çok kullanılan 20
+        <li data-i18n="green_role_li1"><strong>Anket Yaptık:</strong> Okuldaki herkese hangi arabayı kullandıklarını
+          sorduk. En çok kullanılan 20
           araba ve 10 motosikleti belirledik!</li>
-        <li><strong>Herkesi Bilgilendirdik:</strong> Arkadaşlarımıza ve ailelerimize arabaların doğaya nasıl zarar
+        <li data-i18n="green_role_li2"><strong>Herkesi Bilgilendirdik:</strong> Arkadaşlarımıza ve ailelerimize
+          arabaların doğaya nasıl zarar
           verdiğini anlattık</li>
-        <li><strong>Web Sitesini Tanıttık:</strong> Bu web sitesini okulda herkese gösterdik ve kullanmalarını sağladık
+        <li data-i18n="green_role_li3"><strong>Web Sitesini Tanıttık:</strong> Bu web sitesini okulda herkese gösterdik
+          ve kullanmalarını sağladık
         </li>
-        <li><strong>Geri Bildirim Topladık:</strong> Kullanıcıların fikirlerini dinledik ve projeyi daha iyi hale
+        <li data-i18n="green_role_li4"><strong>Geri Bildirim Topladık:</strong> Kullanıcıların fikirlerini dinledik ve
+          projeyi daha iyi hale
           getirdik</li>
-        <li><strong>Ağaç Dikme Planları:</strong> Hesaplanan ağaç sayılarını gerçekten dikmek için planlar yaptık</li>
+        <li data-i18n="green_role_li5"><strong>Ağaç Dikme Planları:</strong> Hesaplanan ağaç sayılarını gerçekten dikmek
+          için planlar yaptık</li>
       </ul>
 
-      <h2>Oylama Çalışması</h2>
-      <p>
+      <h2 data-i18n="green_h2_5">Oylama Çalışması</h2>
+      <p data-i18n="green_p8">
         Eco Drive projesinin temelini oluşturan araç verilerini toplamak için okul genelinde
         kapsamlı bir oylama çalışması yaptık. Öğrencilerimiz ve velilerin katılımıyla:
       </p>
       <ul>
-        <li>200'den fazla öğrenci ve veliye ulaştık</li>
-        <li>Kullanılan araç modellerini listeledik</li>
-        <li>Ortalama yıllık kilometre verilerini derledik</li>
-        <li>En popüler 30 aracı (20 araba + 10 motosiklet) belirledik</li>
+        <li data-i18n="green_vote_li1">200'den fazla öğrenci ve veliye ulaştık</li>
+        <li data-i18n="green_vote_li2">Kullanılan araç modellerini listeledik</li>
+        <li data-i18n="green_vote_li3">Ortalama yıllık kilometre verilerini derledik</li>
+        <li data-i18n="green_vote_li4">En popüler 30 aracı (20 araba + 10 motosiklet) belirledik</li>
       </ul>
-      <p>
+      <p data-i18n="green_p9">
         Bu veriler sayesinde Eco Drive hesaplayıcısı, okulumuzun gerçek verilerine dayalı
         sonuçlar üretebiliyor.
       </p>
 
-      <h2>Geleceğe Dair Planlarımız</h2>
-      <p>
+      <h2 data-i18n="green_h2_6">Geleceğe Dair Planlarımız</h2>
+      <p data-i18n="green_p10">
         Yeşil Okul Kulübü olarak sürekli büyümek ve daha fazla etkiye sahip olmak istiyoruz:
       </p>
       <ul>
-        <li>Eco Drive projesini diğer okullara yaymak</li>
-        <li>Gerçek ağaç dikim kampanyaları düzenlemek</li>
-        <li>Karbon ayak izi azaltma yarışmaları organize etmek</li>
-        <li>Çevre kuruluşları ile daha güçlü işbirlikleri kurmak</li>
-        <li>Sürdürülebilirlik konusunda ödül programları başlatmak</li>
+        <li data-i18n="green_plan_li1">Eco Drive projesini diğer okullara yaymak</li>
+        <li data-i18n="green_plan_li2">Gerçek ağaç dikim kampanyaları düzenlemek</li>
+        <li data-i18n="green_plan_li3">Karbon ayak izi azaltma yarışmaları organize etmek</li>
+        <li data-i18n="green_plan_li4">Çevre kuruluşları ile daha güçlü işbirlikleri kurmak</li>
+        <li data-i18n="green_plan_li5">Sürdürülebilirlik konusunda ödül programları başlatmak</li>
       </ul>
 
-      <h2>Sen de Katıl!</h2>
-      <p>
+      <h2 data-i18n="green_h2_7">Sen de Katıl!</h2>
+      <p data-i18n="green_p11">
         Yeşil Okul Kulübü, çevreye duyarlı her öğrenciye açıktır. Eğer sen de
         sürdürülebilir bir gelecek için çalışmak istiyorsan, kulübümüze katılabilir
         veya projelerimizi takip edebilirsin.
       </p>
-      <p>
+      <p data-i18n="green_p12">
         Birlikte daha yeşil bir dünya için çalışalım!
       </p>
 
       <div style="text-align: center; margin-top: 3rem;">
-        <a href="index.html" class="btn-primary" style="display: inline-block; width: auto; padding: 0.75rem 2rem;">
+        <a href="index.html" class="btn-primary" style="display: inline-block; width: auto; padding: 0.75rem 2rem;"
+          data-i18n="btn_calc_return">
           ← Hesaplama Sayfasına Dön
         </a>
       </div>
     </div>
-  </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <p>
+      <p data-i18n="footer_p1">
         Bu website, <strong>Tech4Peace Jr. FTC Takımı</strong> ve <strong>Yeşil Okul Kulübü</strong>
         öğrencileri tarafından geliştirilmiştir.
       </p>
       <p>
-        Instagram: <a href="#" target="_blank" rel="noopener">@acihsrobotics</a>
+        <span data-i18n="footer_insta">Instagram: </span><a href="#" target="_blank" rel="noopener">@acihsrobotics</a>
       </p>
-      <p style="font-size: 0.875rem; margin-top: 1rem; color: #9ca3af;">
+      <p style="font-size: 0.875rem; margin-top: 1rem; color: #9ca3af;" data-i18n="footer_copy">
         © 2024 Eco Drive | Project Pangea
       </p>
     </div>

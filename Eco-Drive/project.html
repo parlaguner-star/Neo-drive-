@@ -12,6 +12,7 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/custom.css">
+  <script src="./assets/js/i18n.js"></script>
 </head>
 
 <body>
@@ -30,28 +31,33 @@
         <span></span>
       </button>
 
-      <ul class="navbar-menu">
-        <li><a href="index.html">Hesaplama</a></li>
-        <li><a href="about-team.html">Takım</a></li>
-        <li><a href="about-green-school.html">Yeşil Okul</a></li>
-        <li><a href="project.html">Proje</a></li>
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="index.html" data-i18n="nav_calc">Hesaplama</a></li>
+        <li><a href="about-team.html" data-i18n="nav_team">Tech4Peace</a></li>
+        <li><a href="about-green-school.html" data-i18n="nav_green">Yeşil Okul</a></li>
+        <li><a href="project.html" data-i18n="nav_project">Proje</a></li>
+        <li class="lang-switcher">
+          <button onclick="setLanguage('tr')" class="lang-btn" data-lang="tr" aria-label="Türkçe">TR</button>
+          <span aria-hidden="true">/</span>
+          <button onclick="setLanguage('en')" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </li>
       </ul>
     </div>
   </nav>
 
   <!-- Content Page -->
-  <section class="content-page">
+  <main id="main-content" class="content-page">
     <div class="content-card">
-      <h1>Eco Drive Projesi Nasıl Ortaya Çıktı?</h1>
+      <h1 data-i18n="project_h1">Eco Drive Projesi Nasıl Ortaya Çıktı?</h1>
 
-      <p>
+      <p data-i18n="project_p1">
         Merhaba! <strong>Eco Drive</strong> projesi, biz öğrencilerin doğayı korumak için
         yaptığımız harika bir proje! Bu proje, <strong>Project Pangea</strong> adlı büyük
         bir projenin parçası.
       </p>
 
-      <h2>Proje Nasıl Başladı?</h2>
-      <p>
+      <h2 data-i18n="project_h2_1">Proje Nasıl Başladı?</h2>
+      <p data-i18n="project_p2_1">
         Bir gün Tech4Peace Jr. takımı ve Yeşil Okul Kulübü bir araya geldik ve şunu sorduk:
         "Okulumuzda ve çevremizde karbon salımını nasıl azaltabiliriz?"
       </p>
@@ -60,68 +66,76 @@
         Araştırma yaparken şunları öğrendik:
       </p>
       <ul>
-        <li>Çoğu kişi arabalarının ne kadar karbon saldığını bilmiyor</li>
-        <li>Ağaç dikmenin ne kadar önemli olduğunu herkes bilmiyor</li>
-        <li>Basit bir hesaplama aracı ile herkesi bilgilendirebiliriz</li>
-        <li>Okulumuzun gerçek verileri ile çalışmak daha anlamlı</li>
+        <li data-i18n="project_li1_1">Çoğu kişi arabalarının ne kadar karbon saldığını bilmiyor</li>
+        <li data-i18n="project_li1_2">Ağaç dikmenin ne kadar önemli olduğunu herkes bilmiyor</li>
+        <li data-i18n="project_li1_3">Basit bir hesaplama aracı ile herkesi bilgilendirebiliriz</li>
+        <li data-i18n="project_li1_4">Okulumuzun gerçek verileri ile çalışmak daha anlamlı</li>
       </ul>
 
-      <p>
+      <p data-i18n="project_p2_2">
         İşte bu yüzden Eco Drive projesini yaptık! Bu web sitesi sayesinde, herkes
         arabasının ne kadar karbon saldığını öğrenebilir ve kaç ağaç dikmesi gerektiğini
         görebilir. Üstelik ağaçları ekranda da görebilirsiniz!
       </p>
 
-      <h2>Nasıl Veri Topladık?</h2>
-      <p>
+      <h2 data-i18n="project_h2_2">Nasıl Veri Topladık?</h2>
+      <p data-i18n="project_p3_1">
         Bu projenin en güzel yanı, gerçek verilerle çalışması! Yeşil Okul Kulübü
         öğrencileri, okul genelinde büyük bir anket yaptı:
       </p>
 
       <div
         style="background-color: #f0fdf4; padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0; border-left: 4px solid var(--color-primary);">
-        <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-bottom: 1rem;">
+        <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--color-primary); margin-bottom: 1rem;"
+          data-i18n="project_survey_h3">
           Anket Süreci
         </h3>
         <ol style="margin-left: 1.5rem;">
-          <li style="margin-bottom: 0.5rem;">Öğrenci ve velilere hangi arabayı kullandıklarını sorduk</li>
-          <li style="margin-bottom: 0.5rem;">Tüm araç modellerini listeledik</li>
-          <li style="margin-bottom: 0.5rem;">En çok kullanılan <strong>20 araba</strong> ve <strong>10
-              motosiklet</strong>i belirledik</li>
-          <li style="margin-bottom: 0.5rem;">Her araç için ne kadar karbon saldığını araştırdık</li>
-          <li style="margin-bottom: 0.5rem;">Tüm bilgileri web sitesine ekledik</li>
+          <li style="margin-bottom: 0.5rem;" data-i18n="project_survey_li1">Velilere hangi aracı kullandıklarını sorduk
+          </li>
+          <li style="margin-bottom: 0.5rem;" data-i18n="project_survey_li2">Okulumuzda en sık kullanılan 20 araba ve 10
+            motosikleti belirledik</li>
+          <li style="margin-bottom: 0.5rem;" data-i18n="project_survey_li3">Bu listeyi referans alarak veri doğrulaması
+            yaptık</li>
+          <li style="margin-bottom: 0.5rem;" data-i18n="project_survey_li4">Yapay zekâ desteğiyle farklı marka/model/yıl
+            seçenekleri için emisyon
+            verilerini derledik</li>
+          <li style="margin-bottom: 0.5rem;" data-i18n="project_survey_li5">Kullanıcıya geniş araç havuzunu opsiyon
+            olarak sunduk ve hesaplayıcıya
+            entegre ettik</li>
         </ol>
       </div>
 
-      <p>
-        Bu sayede web sitesi, okulumuzun gerçek araç kullanımını yansıtıyor.
+      <p data-i18n="project_p3_2">
+        Bu sayesinde web sitesi, okulumuzun gerçek araç kullanımını yansıtıyor.
         Yani sizin sonuçlarınız, gerçekten okulumuzdaki araçlara dayanıyor!
       </p>
 
-      <h2>Project Pangea Nedir?</h2>
-      <p>
+      <h2 data-i18n="project_h2_3">Project Pangea Nedir?</h2>
+      <p data-i18n="project_p4_1">
         <strong>Project Pangea</strong>, bizim başlattığımız büyük bir proje! Dünyanın her
         yerinden öğrenciler, doğayı korumak için çalışıyor.
       </p>
 
       <div style="background-color: #eff6ff; padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
-        <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--color-secondary); margin-bottom: 1rem;">
+        <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--color-secondary); margin-bottom: 1rem;"
+          data-i18n="project_p4_2">
           Project Pangea'nın Amacı
         </h3>
-        <p style="margin-bottom: 0.75rem;">
+        <p style="margin-bottom: 0.75rem;" data-i18n="project_p4_3">
           "Pangea" kelimesi, milyonlarca yıl önce tüm kıtaların birleşik olduğu süper kıtayı
           ifade eder. Biz de bu isimden ilham alarak, dünyanın her yerinden öğrencileri
           bir araya getirmek istiyoruz!
         </p>
-        <p>
+        <p data-i18n="project_p4_4">
           Farklı okullardan arkadaşlarımız, kendi çevre projelerini yapıyor. Ama hepimiz
           aynı amaç için çalışıyoruz: Doğayı korumak! Birlikte çalışınca çok daha güçlü
           oluyoruz ve dünyayı değiştirebiliyoruz.
         </p>
       </div>
 
-      <h2>Eco Drive'ın Hedefleri</h2>
-      <p>
+      <h2 data-i18n="project_h2_4">Eco Drive'ın Hedefleri</h2>
+      <p data-i18n="project_p5_1">
         Eco Drive projesi ile şunları yapmak istiyoruz:
       </p>
 
@@ -129,142 +143,156 @@
         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
         <div
           style="background-color: #f0fff4; padding: 1.5rem; border-radius: 0.5rem; border: 2px solid var(--color-primary);">
-          <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.1rem;">
+          <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.1rem;"
+            data-i18n="project_goal1_h">
             Herkesi Bilgilendirmek
           </h4>
-          <p style="font-size: 0.95rem; color: var(--color-text);">
+          <p style="font-size: 0.95rem; color: var(--color-text);" data-i18n="project_goal1_p">
             Karbon ayak izi ve çevresel etki konusunda herkesi bilgilendirmek
           </p>
         </div>
 
         <div
           style="background-color: #f0fff4; padding: 1.5rem; border-radius: 0.5rem; border: 2px solid var(--color-primary);">
-          <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.1rem;">
+          <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.1rem;"
+            data-i18n="project_goal2_h">
             Sayılarla Göstermek
           </h4>
-          <p style="font-size: 0.95rem; color: var(--color-text);">
+          <p style="font-size: 0.95rem; color: var(--color-text);" data-i18n="project_goal2_p">
             Arabaların ne kadar karbon saldığını somut sayılarla göstermek
           </p>
         </div>
 
         <div
           style="background-color: #f0fff4; padding: 1.5rem; border-radius: 0.5rem; border: 2px solid var(--color-primary);">
-          <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.1rem;">
+          <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.1rem;"
+            data-i18n="project_goal3_h">
             Ağaç Dikmek
           </h4>
-          <p style="font-size: 0.95rem; color: var(--color-text);">
+          <p style="font-size: 0.95rem; color: var(--color-text);" data-i18n="project_goal3_p">
             Hesaplanan ağaç sayılarını gerçekten dikmek için kampanyalar yapmak
           </p>
         </div>
 
         <div
           style="background-color: #f0fff4; padding: 1.5rem; border-radius: 0.5rem; border: 2px solid var(--color-primary);">
-          <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.1rem;">
+          <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.1rem;"
+            data-i18n="project_goal4_h">
             Birlikte Çalışmak
           </h4>
-          <p style="font-size: 0.95rem; color: var(--color-text);">
+          <p style="font-size: 0.95rem; color: var(--color-text);" data-i18n="project_goal4_p">
             Farklı okullardan arkadaşlarla birlikte çalışmak
           </p>
         </div>
       </div>
 
-      <h2>Nasıl Hesaplıyoruz?</h2>
-      <p>
+      <h2 data-i18n="project_h2_5">Nasıl Hesaplıyoruz?</h2>
+      <p data-i18n="project_p6_1">
         Eco Drive hesaplama aracı, bilimsel verilere dayalı basit bir formül kullanır.
         Çok karmaşık değil, bakalım nasıl çalışıyor:
       </p>
 
       <div
         style="background-color: #fffaf0; padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0; border-left: 4px solid var(--color-accent);">
-        <p style="margin-bottom: 0.75rem; font-size: 1.05rem;">
+        <p style="margin-bottom: 0.75rem; font-size: 1.05rem;" data-i18n="project_step1">
           <strong>1. Adım:</strong> Seçtiğiniz araç, her kilometrede ne kadar CO₂ salıyor?<br>
           <em>(Örnek: Ortalama bir araç ~0.12 kg CO₂/km üretir)</em>
         </p>
-        <p style="margin-bottom: 0.75rem; font-size: 1.05rem;">
+        <p style="margin-bottom: 0.75rem; font-size: 1.05rem;" data-i18n="project_step2">
           <strong>2. Adım:</strong> Yıllık kilometre ile çarpıyoruz<br>
           <em>(15,000 km x 0.12 kg = 1,800 kg CO₂/yıl)</em>
         </p>
-        <p style="font-size: 1.05rem;">
+        <p style="font-size: 1.05rem;" data-i18n="project_step3">
           <strong>3. Adım:</strong> Bir ağaç yılda ne kadar CO₂ emiyor? Ona bölüyoruz!<br>
           <em>(1,800 kg ÷ 21 kg/ağaç = ~86 ağaç gerekir)</em>
         </p>
       </div>
 
-      <p
-        style="font-size: 0.9rem; color: var(--color-text-light); font-style: italic; padding: 1rem; background-color: #f0fff4; border-radius: 0.5rem;">
+      <p style="font-size: 0.9rem; color: var(--color-text-light); font-style: italic; padding: 1rem; background-color: #f0fff4; border-radius: 0.5rem;"
+        data-i18n="project_calc_note">
         * Not: Bu değerler tahmini. Araç tipi, yakıt türü gibi şeylere göre değişebilir.
         Proje geliştikçe daha doğru hale getireceğiz!
       </p>
 
-      <h2>Gelecek Adımlar</h2>
-      <p>
+      <h2 data-i18n="project_h2_6">Gelecek Adımlar</h2>
+      <p data-i18n="project_p7_1">
         Eco Drive projesi sürekli gelişen, dinamik bir çalışmadır. Önümüzdeki dönemde
         planladığımız geliştirmeler:
       </p>
 
       <ul>
-        <li><strong>Veri Kaynaklarını Güncelleme:</strong> Daha güncel ve detaylı araç emisyon verileri ekleme</li>
-        <li><strong>Yakıt Tipi Desteği:</strong> Benzin, dizel, hibrit ve elektrikli araçlar için ayrı hesaplamalar</li>
-        <li><strong>Ağaç Dikim Ortaklıkları:</strong> Açı Ormanı ve diğer ağaç dikim organizasyonları ile işbirliği</li>
-        <li><strong>MEB ve Okul İzni:</strong> Projenin resmi olarak tanınması ve daha geniş çapta kullanılması</li>
-        <li><strong>Diğer Okullara Yayılma:</strong> Projenin başka okullarda da kullanılması için çalışmalar</li>
-        <li><strong>Mobil Uygulama:</strong> iOS ve Android için mobil uygulama geliştirme</li>
-        <li><strong>Karbon Offset İzleme:</strong> Dikilmiş ağaçların takibi ve kullanıcılara geri bildirim</li>
-        <li><strong>Sosyal Medya Entegrasyonu:</strong> Sonuçların paylaşılması ve farkındalık kampanyaları</li>
+        <li data-i18n="project_next_li1"><strong>Veri Kaynaklarını Güncelleme:</strong> Daha güncel ve detaylı araç
+          emisyon verileri ekleme</li>
+        <li data-i18n="project_next_li2"><strong>Yakıt Tipi Desteği:</strong> Benzin, dizel, hibrit ve elektrikli
+          araçlar için ayrı hesaplamalar</li>
+        <li data-i18n="project_next_li3"><strong>Ağaç Dikim Ortaklıkları:</strong> Açı Ormanı ve diğer ağaç dikim
+          organizasyonları ile işbirliği</li>
+        <li data-i18n="project_next_li4"><strong>MEB ve Okul İzni:</strong> Projenin resmi olarak tanınması ve daha
+          geniş çapta kullanılması</li>
+        <li data-i18n="project_next_li5"><strong>Diğer Okullara Yayılma:</strong> Projenin başka okullarda da
+          kullanılması için çalışmalar</li>
+        <li data-i18n="project_next_li6"><strong>Mobil Uygulama:</strong> iOS ve Android için mobil uygulama geliştirme
+        </li>
+        <li data-i18n="project_next_li7"><strong>Karbon Offset İzleme:</strong> Dikilmiş ağaçların takibi ve
+          kullanıcılara geri bildirim</li>
+        <li data-i18n="project_next_li8"><strong>Sosyal Medya Entegrasyonu:</strong> Sonuçların paylaşılması ve
+          farkındalık kampanyaları</li>
       </ul>
 
-      <h2>Geri Bildirim ve Katkı</h2>
-      <p>
+      <h2 data-i18n="project_h2_7">Geri Bildirim ve Katkı</h2>
+      <p data-i18n="project_p8_1">
         Eco Drive, bir öğrenci projesidir ve sürekli gelişmektedir. Sizin de fikirleriniz
         ve geri bildirimleriniz bu projenin daha iyi hale gelmesine yardımcı olacaktır.
       </p>
-      <p>
+      <p data-i18n="project_p8_2">
         Proje hakkında önerileriniz, sorularınız veya katkıda bulunmak istiyorsanız,
         lütfen bizimle iletişime geçin:
       </p>
       <p>
         E-posta: <strong>[E-posta adresi eklenecek]</strong><br>
-        Instagram: <a href="#" target="_blank" rel="noopener"
+        <span data-i18n="footer_insta">Instagram: </span><a href="#" target="_blank" rel="noopener"
           style="color: var(--color-primary); font-weight: 600;">@acihsrobotics</a>
       </p>
 
-      <h2>Başarılarımız</h2>
-      <p>
+      <h2 data-i18n="project_h2_8">Başarılarımız</h2>
+      <p data-i18n="project_p9_1">
         Projeyi başlattığımızdan beri neler oldu:
       </p>
       <ul>
-        <li>200'den fazla öğrenci ve veli projeyi öğrendi</li>
-        <li>Okulda doğa koruma konuşmaları arttı</li>
-        <li>Birçok aile arabalarını nasıl kullandıklarını düşünmeye başladı</li>
-        <li>Daha çok kişi otobüs ve metro kullanmaya başladı</li>
+        <li data-i18n="project_success_li1">200'den fazla öğrenci ve veli projeyi öğrendi</li>
+        <li data-i18n="project_success_li2">Okulda doğa koruma konuşmaları arttı</li>
+        <li data-i18n="project_success_li3">Birçok aile arabalarını nasıl kullandıklarını düşünmeye başladı</li>
+        <li data-i18n="project_success_li4">Daha çok kişi otobüs ve metro kullanmaya başladı</li>
       </ul>
-      <p>
+      <p data-i18n="project_p9_2">
         Bu sadece başlangıç! Birlikte çalışırsak dünyayı değiştirebiliriz!
       </p>
 
       <div style="text-align: center; margin-top: 3rem;">
         <a href="index.html" class="btn-primary"
-          style="display: inline-block; width: auto; padding: 0.75rem 2rem; margin-right: 1rem;">
+          style="display: inline-block; width: auto; padding: 0.75rem 2rem; margin-right: 1rem;"
+          data-i18n="btn_calc_now">
           Hemen Hesapla
         </a>
-        <a href="about-team.html" class="btn-secondary" style="display: inline-block; padding: 0.75rem 1.5rem;">
-          Takımı Tanı
+        <a href="about-team.html" class="btn-secondary" style="display: inline-block; padding: 0.75rem 1.5rem;"
+          data-i18n="btn_know_team">
+          Tech4Peace'i Tanı
         </a>
       </div>
     </div>
-  </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <p>
+      <p data-i18n="footer_p1">
         Bu website, <strong>Tech4Peace Jr. FTC Takımı</strong> ve <strong>Yeşil Okul Kulübü</strong>
         öğrencileri tarafından geliştirilmiştir.
       </p>
       <p>
         Instagram: <a href="#" target="_blank" rel="noopener">@acihsrobotics</a>
       </p>
-      <p style="font-size: 0.875rem; margin-top: 1rem; color: #9ca3af;">
+      <p style="font-size: 0.875rem; margin-top: 1rem; color: #9ca3af;" data-i18n="footer_copy">
         © 2024 Eco Drive | Project Pangea
       </p>
     </div>

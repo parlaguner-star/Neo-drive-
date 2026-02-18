@@ -14,9 +14,13 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/custom.css">
+  <script src="./assets/js/i18n.js"></script>
 </head>
 
 <body>
+  <a href="#main-content" class="sr-only focus:not-sr-only"
+    style="padding: 1rem; background: white; color: var(--color-primary); z-index: 1000; position: absolute;">İçeriğe
+    Atla</a>
 
   <!-- Navbar -->
   <nav class="navbar">
@@ -32,19 +36,24 @@
         <span></span>
       </button>
 
-      <ul class="navbar-menu">
-        <li><a href="index.html">Hesaplama</a></li>
-        <li><a href="about-team.html">Takım</a></li>
-        <li><a href="about-green-school.html">Yeşil Okul</a></li>
-        <li><a href="project.html">Proje</a></li>
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="index.html" data-i18n="nav_calc">Hesaplama</a></li>
+        <li><a href="about-team.html" data-i18n="nav_team">Tech4Peace</a></li>
+        <li><a href="about-green-school.html" data-i18n="nav_green">Yeşil Okul</a></li>
+        <li><a href="project.html" data-i18n="nav_project">Proje</a></li>
+        <li class="lang-switcher">
+          <button onclick="setLanguage('tr')" class="lang-btn" data-lang="tr" aria-label="Türkçe">TR</button>
+          <span aria-hidden="true">/</span>
+          <button onclick="setLanguage('en')" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </li>
       </ul>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Arabanız Kaç Ağaç İster?</h1>
-    <p>
+    <h1 data-i18n="hero_h1">Arabanız Kaç Ağaç İster?</h1>
+    <p data-i18n="hero_p">
       Tech4Peace Jr. ve Yeşil Okul Kulübü'nün hazırladığı bu siteyle, aracınız için
       kaç ağaç dikilmesi gerektiğini hesaplayabilirsiniz. Hesaplama yaptıktan sonra
       ağaçları ekranda görebilirsiniz!
@@ -56,68 +65,83 @@
     </div>
   </section>
 
-  <!-- Main Content - Two Column Layout -->
-  <div class="main-content">
+  <!-- Main Content -->
+  <main id="main-content" class="main-content">
     <!-- Left Column: Calculator -->
     <section class="calculator-section">
       <div class="calculator-card">
-        <h2>Karbon Ayak İzi Hesaplayıcı</h2>
+        <h2 data-i18n="calc_h2">Karbon Ayak İzi Hesaplayıcı</h2>
 
         <form id="calculatorForm">
-          <!-- Araç Tipi -->
+          <!-- Marka -->
           <div class="form-group">
-            <label for="vehicleType" class="form-label">Araç Tipi</label>
-            <select id="vehicleType" class="form-select" required>
-              <option value="">Araç tipi seçin...</option>
-              <option value="car">Araba</option>
-              <option value="motorcycle">Motosiklet</option>
+            <label for="vehicleBrand" class="form-label" data-i18n="label_brand">Marka</label>
+            <select id="vehicleBrand" class="form-select" required>
+              <option value="" data-i18n="select_brand">Marka seçin...</option>
             </select>
           </div>
 
-          <!-- Araç Modeli -->
+          <!-- Model -->
           <div class="form-group">
-            <label for="vehicleModel" class="form-label">Araç Modeli</label>
+            <label for="vehicleModel" class="form-label" data-i18n="label_model">Model</label>
             <select id="vehicleModel" class="form-select" disabled required>
-              <option value="">Önce araç tipi seçin...</option>
+              <option value="" data-i18n="select_model_initial">Önce marka seçin...</option>
             </select>
+          </div>
+
+          <!-- Yakıt Tipi ve Yıl -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="fuelType" class="form-label" data-i18n="label_fuel">Yakıt Tipi</label>
+              <select id="fuelType" class="form-select" disabled required>
+                <option value="" data-i18n="select_fuel">Seçiniz...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="vehicleYear" class="form-label" data-i18n="label_year">Model Yılı</label>
+              <select id="vehicleYear" class="form-select" required>
+                <option value="" data-i18n="select_fuel">Seçiniz...</option>
+              </select>
+            </div>
           </div>
 
           <!-- Yıllık Kilometre -->
           <div class="form-group">
-            <label for="yearlyKm" class="form-label">Yıllık Kilometre</label>
-            <input type="number" id="yearlyKm" class="form-input" placeholder="Örn: 15000" min="1" max="100000"
-              required>
-            <p style="font-size: 0.875rem; color: var(--color-text-light); margin-top: 0.5rem;">
-              Aracınızla yılda ortalama kaç kilometre yol aldığınızı girin.
-            </p>
+            <label for="yearlyKm" class="form-label" data-i18n="label_km">Yıllık Kilometre</label>
+            <input type="number" id="yearlyKm" class="form-input" data-i18n="placeholder_km" placeholder="Örn: 15000"
+              min="1" max="100000" required>
           </div>
 
           <!-- Hesapla Butonu -->
-          <button type="submit" class="btn-primary">
+          <button type="submit" class="btn-primary" data-i18n="btn_calculate">
             Ağaçları Hesapla
           </button>
         </form>
 
         <!-- Sonuç Bölümü -->
-        <div id="resultSection" class="result-section">
+        <div id="resultSection" class="result-section" role="region" aria-live="polite" aria-labelledby="resultHeading">
+          <h2 id="resultHeading" class="sr-only" data-i18n="result_h2">Hesaplama Sonucu</h2>
           <div class="result-number" id="resultNumber">0</div>
-          <div class="result-text" id="resultText">
+          <div class="result-text" id="resultText" data-i18n="result_initial">
             Hesaplama sonucunuz burada görünecek.
           </div>
-          <div class="result-note">
+          <div class="result-note" data-i18n="result_note">
             * Hesaplama değerleri tahmini olup, proje geliştikçe güncellenecektir.
           </div>
           <div style="text-align: center; margin-top: 1.5rem;">
-            <a href="#" class="btn-secondary" onclick="alert('Bağış linki yakında eklenecek!'); return false;">
-              Açı Ormanı'na Bağış İçin Bilgi Al
+            <p id="donationSpendText" style="margin-bottom: 1rem; font-weight: 600; display: none;"></p>
+            <a href="#" id="donationButton" class="btn-secondary" style="display: none;"
+              onclick="alert('Bağış linki yakında eklenecek!'); return false;">
+              Bu sayıyı düşürmek için bağış yapmak ister misiniz?
             </a>
           </div>
         </div>
 
         <!-- Ağaç Görselleştirme Bölümü -->
-        <div id="treeVisualization" class="tree-visualization">
+        <div id="treeVisualization" class="tree-visualization" role="region" aria-live="polite">
           <h3
-            style="text-align: center; color: var(--color-primary); font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">
+            style="text-align: center; color: var(--color-primary); font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;"
+            data-i18n="tree_h3">
             Ağaçları Gör!
           </h3>
           <div id="treeGrid" class="tree-grid"></div>
@@ -131,49 +155,50 @@
       <!-- Tech4Peace Jr. Card -->
       <div class="info-card">
         <div class="info-card-icon">⚙️</div>
-        <h3>Tech4Peace Jr. Takımı</h3>
-        <p>
+        <h3 data-i18n="card_team_h3">Tech4Peace Jr. Takımı</h3>
+        <p data-i18n="card_team_p">
           FTC robotik yarışmalarına katılan öğrenci takımımız, teknoloji ile sosyal sorumluluk projelerini bir araya
           getiriyor.
         </p>
-        <a href="about-team.html" class="btn-secondary">Daha Fazla Bilgi</a>
+        <a href="about-team.html" class="btn-secondary" aria-label="Tech4Peace Jr. Takımı hakkında daha fazla bilgi"
+          data-i18n="btn_more_info">Daha Fazla Bilgi</a>
       </div>
 
       <!-- Yeşil Okul Card -->
       <div class="info-card">
         <div class="info-card-icon">🌿</div>
-        <h3>Yeşil Okul Kulübü</h3>
-        <p>
+        <h3 data-i18n="card_green_h3">Yeşil Okul Kulübü</h3>
+        <p data-i18n="card_green_p">
           Okulumuzda sürdürülebilirlik ve çevre bilinci konusunda farkındalık yaratan öğrenci sosyal sorumluluk grubu.
         </p>
-        <a href="about-green-school.html" class="btn-secondary">Daha Fazla Bilgi</a>
+        <a href="about-green-school.html" class="btn-secondary" aria-label="Yeşil Okul Kulübü hakkında daha fazla bilgi"
+          data-i18n="btn_more_info">Daha Fazla Bilgi</a>
       </div>
 
       <!-- Project Pangea Card -->
       <div class="info-card">
         <div class="info-card-icon">🌍</div>
-        <h3>Eco Drive Projesi</h3>
-        <p>
+        <h3 data-i18n="card_project_h3">Eco Drive Projesi</h3>
+        <p data-i18n="card_project_p">
           Project Pangea'nın bir parçası olan bu projede, öğrenciler veri topluyor ve sürdürülebilir çözümler
           geliştiriyor.
         </p>
-        <a href="project.html" class="btn-secondary">Projeyi Öğren</a>
+        <a href="project.html" class="btn-secondary" data-i18n="btn_learn_project">Projeyi Öğren</a>
       </div>
     </section>
-  </div>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <p>
+      <p data-i18n="footer_p1">
         Bu website, <strong>Tech4Peace Jr. FTC Takımı</strong> ve <strong>Yeşil Okul Kulübü</strong>
         öğrencileri tarafından geliştirilmiştir.
       </p>
       <p>
-        <!-- Gerçek Instagram linki eklenecek -->
-        Instagram: <a href="#" target="_blank" rel="noopener">@acihsrobotics</a>
+        <span data-i18n="footer_insta">Instagram: </span><a href="#" target="_blank" rel="noopener">@acihsrobotics</a>
       </p>
-      <p style="font-size: 0.875rem; margin-top: 1rem; color: #9ca3af;">
+      <p style="font-size: 0.875rem; margin-top: 1rem; color: #9ca3af;" data-i18n="footer_copy">
         © 2024 Eco Drive | Project Pangea
       </p>
     </div>

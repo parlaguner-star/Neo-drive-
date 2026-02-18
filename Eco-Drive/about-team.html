@@ -13,134 +13,149 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/custom.css">
+  <script src="./assets/js/i18n.js"></script>
 </head>
 
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Ana Navigasyon">
     <div class="navbar-container">
-      <a href="index.html" class="navbar-logo">
-        <img src="./assets/img/Acıhs_logo.png" alt="Acıhs Robotics Logo">
+      <a href="index.html" class="navbar-logo" aria-label="Eco Drive Ana Sayfa">
+        <img src="./assets/img/Acıhs_logo.png" alt="Açı Okulları Robotik Logosu">
         Eco <span>Drive</span>
       </a>
 
-      <button class="navbar-toggle" aria-label="Menüyü aç/kapat">
+      <button class="navbar-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navbarMenu">
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      <ul class="navbar-menu">
-        <li><a href="index.html">Hesaplama</a></li>
-        <li><a href="about-team.html">Takım</a></li>
-        <li><a href="about-green-school.html">Yeşil Okul</a></li>
-        <li><a href="project.html">Proje</a></li>
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="index.html" data-i18n="nav_calc">Hesaplama</a></li>
+        <li><a href="about-team.html" data-i18n="nav_team">Tech4Peace</a></li>
+        <li><a href="about-green-school.html" data-i18n="nav_green">Yeşil Okul</a></li>
+        <li><a href="project.html" data-i18n="nav_project">Proje</a></li>
+        <li class="lang-switcher">
+          <button onclick="setLanguage('tr')" class="lang-btn" data-lang="tr" aria-label="Türkçe">TR</button>
+          <span aria-hidden="true">/</span>
+          <button onclick="setLanguage('en')" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </li>
       </ul>
     </div>
   </nav>
 
   <!-- Content Page -->
-  <section class="content-page">
+  <main class="content-page">
     <div class="content-card">
       <div style="text-align: center; margin-bottom: 2rem;">
         <img src="./assets/img/Acıhs_logo.png" alt="Acıhs Robotics Logo"
           style="max-width: 400px; width: 100%; height: auto;">
       </div>
 
-      <h1>Biz Kimiz? Tech4Peace Jr. Takımı</h1>
+      <h1 data-i18n="team_h1">Biz Kimiz? Tech4Peace Jr. Takımı</h1>
 
-      <p>
-        Merhaba! Biz <strong>Tech4Peace Jr.</strong> takımıyız. Robot yapmayı çok seviyoruz ve
-        dünya çapında robotik yarışmalarına katılıyoruz. Ama sadece robot yapmakla kalmıyoruz,
-        aynı zamanda doğayı korumak ve çevremize faydalı olmak için de çalışıyoruz!
+      <p data-i18n="team_p1">
+        Merhaba! Biz <strong>Tech4Peace Jr.</strong> takımıyız. Açı Okulları’nda robotik ve teknoloji
+        alanında çalışan bir FTC (FIRST Tech Challenge) öğrenci takımıyız. Robot yapmayı çok seviyoruz
+        ve ulusal–uluslararası robotik yarışmalarına katılıyoruz. Ama sadece robot yapmakla kalmıyoruz;
+        aynı zamanda teknoloji ile çevremize ve dünyaya fayda sağlamayı hedefliyoruz.
       </p>
 
-      <h2>Robot Yarışması Nedir?</h2>
-      <p>
-        <strong>FIRST</strong> adında bir organizasyon var. Bu organizasyon, dünyanın her yerinden
-        öğrencilerin robot yapıp yarıştığı büyük bir etkinlik düzenliyor. Biz de bu yarışmalara
-        katılıyoruz!
+      <h2 data-i18n="team_h2_1">FIRST ve FTC Nedir?</h2>
+      <p data-i18n="team_p2_1">
+        <strong>FIRST</strong> (For Inspiration and Recognition of Science and Technology),
+        dünyanın her yerinden öğrencilerin robot tasarlayıp yarıştığı uluslararası bir organizasyondur.
+        FIRST, gençleri bilim, teknoloji ve mühendislik alanlarında geliştirmeyi amaçlar.
       </p>
 
-      <p>
-        <strong>FTC</strong> ise bizim katıldığımız yarışma türü. Bu yarışmada robot tasarlıyoruz,
-        kodluyoruz ve takım halinde çalışıyoruz. Her yıl farklı bir görev veriliyor ve biz de
-        yaratıcı çözümler buluyoruz!
+      <p data-i18n="team_p2_2">
+        Bizim katıldığımız yarışma türü <strong>FTC (FIRST Tech Challenge)</strong>’dır.
+        Bu yarışmada robot tasarlıyor, kodluyor, test ediyor ve takım halinde yarışıyoruz.
+        Her yıl farklı bir görev veriliyor ve biz de yaratıcı çözümler geliştiriyoruz.
       </p>
 
-      <h2>Neden Robot Yapıyoruz?</h2>
-      <p>
-        Robot yapmak sadece eğlenceli değil, aynı zamanda çok öğretici! Biz robot yaparken:
-      </p>
-      <ul>
-        <li>Doğayı korumak için projeler yapıyoruz</li>
-        <li>Çevremize faydalı olmak için çalışıyoruz</li>
-        <li>Bilim, teknoloji ve matematik öğreniyoruz</li>
-        <li>Takım halinde çalışmayı öğreniyoruz</li>
-        <li>Dünyanın her yerinden arkadaşlar ediniyoruz</li>
-      </ul>
-
-      <h2>Project Pangea Nedir?</h2>
-      <p>
-        <strong>Eco Drive</strong> projesi, bizim başlattığımız <strong>Project Pangea</strong>
-        adlı büyük bir projenin parçası! Project Pangea, dünyanın her yerinden öğrencilerin
-        bir araya gelip doğayı korumak için çalıştığı bir ağ.
-      </p>
-
-      <p>
-        Farklı okullardan arkadaşlarımızla birlikte, çevre sorunlarına çözümler buluyoruz.
-        Eco Drive projesi de bunlardan biri! Bu projede, arabaların ne kadar karbon saldığını
-        hesaplıyoruz ve kaç ağaç dikmemiz gerektiğini öğreniyoruz.
-      </p>
-
-      <h2>Yeşil Okul Kulübü ile Birlikte</h2>
-      <p>
-        Bu projede <strong>Yeşil Okul Kulübü</strong> ile birlikte çalışıyoruz! Onlar da
-        doğayı korumak için çalışan harika bir kulüp. Birlikte:
+      <h2 data-i18n="team_h2_2">Neden Robot Yapıyoruz?</h2>
+      <p data-i18n="team_p3_1">
+        Robot yapmak bizim için sadece bir yarışma değil, aynı zamanda öğrenme ve üretme yoludur.
+        Robot yaparken:
       </p>
       <ul>
-        <li>Okuldaki herkesin hangi arabayı kullandığını öğrendik</li>
-        <li>En çok kullanılan 20 araba ve 10 motosikleti belirledik</li>
-        <li>Herkese doğayı korumanın önemini anlattık</li>
-        <li>Bu web sitesini birlikte yaptık</li>
+        <li data-i18n="team_li1_1">Bilim, teknoloji ve matematik öğreniyoruz</li>
+        <li data-i18n="team_li1_2">Takım halinde problem çözmeyi öğreniyoruz</li>
+        <li data-i18n="team_li1_3">Gerçek hayattaki sorunlara çözüm üretiyoruz</li>
+        <li data-i18n="team_li1_4">Teknolojiyi topluma fayda için kullanıyoruz</li>
+        <li data-i18n="team_li1_5">Dünyanın farklı yerlerinden öğrencilerle bağlantı kuruyoruz</li>
       </ul>
 
-      <p>
-        Birlikte çalışınca çok daha güzel işler çıkıyor! Teknoloji ve doğa sevgisi bir araya
-        gelince harika projeler ortaya çıkıyor.
+      <h2 data-i18n="team_h2_3">Project Pangea ve Eco Drive</h2>
+      <p data-i18n="team_p4_1">
+        <strong>Eco Drive</strong> projesi, Tech4Peace takımlarının yürüttüğü
+        <strong>Project Pangea</strong> adlı uluslararası çevre projesinin bir parçasıdır.
+        Project Pangea, farklı ülkelerden öğrencilerin doğayı korumak için birlikte
+        çalıştığı küresel bir ağdır.
       </p>
 
-      <h2>Bize Ulaşın</h2>
-      <p>
+      <p data-i18n="team_p4_2">
+        Eco Drive projesinde, araçların ne kadar karbon saldığını hesaplıyor ve
+        bu karbonu dengelemek için kaç ağaç dikilmesi gerektiğini gösteriyoruz.
+        Bu sayede insanların çevresel etkilerini daha iyi anlamalarını hedefliyoruz.
+      </p>
+
+      <h2 data-i18n="team_h2_4">Yeşil Okul Kulübü ile İş Birliği</h2>
+      <p data-i18n="team_p5_1">
+        Bu projeyi <strong>Yeşil Okul Kulübü</strong> ile birlikte yürütüyoruz.
+        Birlikte okulumuzdaki araç kullanım verilerini topladık ve
+        en çok kullanılan 20 araba ile 10 motosikleti belirledik.
+        Bu verilerle Eco Drive hesaplama sistemini geliştirdik.
+      </p>
+
+      <ul>
+        <li data-i18n="team_li2_1">Okul genelinde araç anketi yaptık</li>
+        <li data-i18n="team_li2_2">Karbon emisyon verilerini araştırdık</li>
+        <li data-i18n="team_li2_3">Web sitesini birlikte geliştirdik</li>
+        <li data-i18n="team_li2_4">Çevre bilinci etkinlikleri düzenledik</li>
+      </ul>
+
+      <p data-i18n="team_p5_2">
+        Teknoloji ve doğa sevgisini bir araya getirerek, sürdürülebilir bir gelecek için
+        çalışıyoruz. Birlikte üretmenin daha güçlü olduğuna inanıyoruz.
+      </p>
+
+      <h2 data-i18n="team_h2_5">Bize Ulaşın</h2>
+      <p data-i18n="team_p6_1">
         Takımımız hakkında daha fazla bilgi almak, projelerimizi takip etmek veya
-        işbirliği yapmak için sosyal medya hesaplarımızdan bize ulaşabilirsiniz.
+        iş birliği yapmak için sosyal medya hesaplarımızdan bize ulaşabilirsiniz.
       </p>
+
       <p>
-        <!-- Gerçek sosyal medya linkleri eklenecek -->
-        Instagram: <a href="#" target="_blank" rel="noopener"
-          style="color: var(--color-primary); font-weight: 600;">@acihsrobotics</a>
+        <span data-i18n="footer_insta">Instagram: </span>
+        <a href="#" target="_blank" rel="noopener" style="color: var(--color-primary); font-weight:600;">
+          @acihsrobotics
+        </a>
       </p>
 
       <div style="text-align: center; margin-top: 3rem;">
-        <a href="index.html" class="btn-primary" style="display: inline-block; width: auto; padding: 0.75rem 2rem;">
+        <a href="index.html" class="btn-primary" style="display: inline-block; width: auto; padding: 0.75rem 2rem;"
+          data-i18n="btn_calc_return"> <!-- Not yet in i18n, adding -->
           ← Hesaplama Sayfasına Dön
         </a>
       </div>
     </div>
-  </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <p>
+      <p data-i18n="footer_p1">
         Bu website, <strong>Tech4Peace Jr. FTC Takımı</strong> ve <strong>Yeşil Okul Kulübü</strong>
         öğrencileri tarafından geliştirilmiştir.
       </p>
       <p>
-        Instagram: <a href="#" target="_blank" rel="noopener">@acihsrobotics</a>
+        <span data-i18n="footer_insta">Instagram: </span><a href="#" target="_blank" rel="noopener">@acihsrobotics</a>
       </p>
-      <p style="font-size: 0.875rem; margin-top: 1rem; color: #9ca3af;">
+      <p style="font-size: 0.875rem; margin-top: 1rem; color: #9ca3af;" data-i18n="footer_copy">
         © 2024 Eco Drive | Project Pangea
       </p>
     </div>

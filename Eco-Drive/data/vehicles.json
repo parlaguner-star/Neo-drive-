@@ -1,212 +1,464 @@
 [
   {
-    "id": "car-1",
+    "id": "fiat-egea-s-b",
     "type": "car",
-    "name": "Toyota Corolla",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.120
-  },
-  {
-    "id": "car-2",
-    "type": "car",
-    "name": "Volkswagen Golf",
+    "name": "Fiat Egea Sedan",
     "fuelType": "Benzin",
     "emissionPerKm": 0.135
   },
   {
-    "id": "car-3",
+    "id": "fiat-egea-s-d",
+    "type": "car",
+    "name": "Fiat Egea Sedan",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.110
+  },
+  {
+    "id": "fiat-egea-s-h",
+    "type": "car",
+    "name": "Fiat Egea Sedan",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.098
+  },
+  {
+    "id": "fiat-egea-hb-b",
+    "type": "car",
+    "name": "Fiat Egea HB",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.138
+  },
+  {
+    "id": "fiat-egea-hb-d",
+    "type": "car",
+    "name": "Fiat Egea HB",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.115
+  },
+  {
+    "id": "fiat-egea-c-b",
+    "type": "car",
+    "name": "Fiat Egea Cross",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.138
+  },
+  {
+    "id": "fiat-egea-c-d",
+    "type": "car",
+    "name": "Fiat Egea Cross",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.115
+  },
+  {
+    "id": "fiat-egea-c-h",
+    "type": "car",
+    "name": "Fiat Egea Cross",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.102
+  },
+  {
+    "id": "fiat-panda-b",
+    "type": "car",
+    "name": "Fiat Panda",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.110
+  },
+  {
+    "id": "fiat-500-b",
+    "type": "car",
+    "name": "Fiat 500",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.105
+  },
+  {
+    "id": "fiat-500e-e",
+    "type": "car",
+    "name": "Fiat 500e",
+    "fuelType": "Elektrik",
+    "emissionPerKm": 0.018
+  },
+  {
+    "id": "renault-clio-b",
     "type": "car",
     "name": "Renault Clio",
     "fuelType": "Benzin",
     "emissionPerKm": 0.115
   },
   {
-    "id": "car-4",
+    "id": "renault-clio-h",
     "type": "car",
-    "name": "Fiat Egea",
+    "name": "Renault Clio",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.088
+  },
+  {
+    "id": "renault-megane-b",
+    "type": "car",
+    "name": "Renault Megane Sedan",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.125
+  },
+  {
+    "id": "renault-megane-d",
+    "type": "car",
+    "name": "Renault Megane Sedan",
     "fuelType": "Dizel",
+    "emissionPerKm": 0.118
+  },
+  {
+    "id": "renault-megane-e",
+    "type": "car",
+    "name": "Renault Megane E-Tech",
+    "fuelType": "Elektrik",
+    "emissionPerKm": 0.012
+  },
+  {
+    "id": "renault-austral-h",
+    "type": "car",
+    "name": "Renault Austral",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.105
+  },
+  {
+    "id": "renault-taliant-b",
+    "type": "car",
+    "name": "Renault Taliant",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.120
+  },
+  {
+    "id": "renault-captur-b",
+    "type": "car",
+    "name": "Renault Captur",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.132
+  },
+  {
+    "id": "renault-captur-h",
+    "type": "car",
+    "name": "Renault Captur",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.108
+  },
+  {
+    "id": "vw-golf-b",
+    "type": "car",
+    "name": "Volkswagen Golf",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.128
+  },
+  {
+    "id": "vw-golf-d",
+    "type": "car",
+    "name": "Volkswagen Golf",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.115
+  },
+  {
+    "id": "vw-polo-b",
+    "type": "car",
+    "name": "Volkswagen Polo",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.112
+  },
+  {
+    "id": "vw-passat-b",
+    "type": "car",
+    "name": "Volkswagen Passat",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.145
+  },
+  {
+    "id": "vw-passat-d",
+    "type": "car",
+    "name": "Volkswagen Passat",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.130
+  },
+  {
+    "id": "vw-tiguan-b",
+    "type": "car",
+    "name": "Volkswagen Tiguan",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.155
+  },
+  {
+    "id": "vw-tiguan-d",
+    "type": "car",
+    "name": "Volkswagen Tiguan",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.142
+  },
+  {
+    "id": "vw-troc-b",
+    "type": "car",
+    "name": "Volkswagen T-Roc",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.138
+  },
+  {
+    "id": "toyota-corolla-b",
+    "type": "car",
+    "name": "Toyota Corolla",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.130
+  },
+  {
+    "id": "toyota-corolla-h",
+    "type": "car",
+    "name": "Toyota Corolla",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.082
+  },
+  {
+    "id": "toyota-chr-h",
+    "type": "car",
+    "name": "Toyota C-HR",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.086
+  },
+  {
+    "id": "toyota-yaris-h",
+    "type": "car",
+    "name": "Toyota Yaris",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.075
+  },
+  {
+    "id": "toyota-rav4-h",
+    "type": "car",
+    "name": "Toyota RAV4",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.128
+  },
+  {
+    "id": "citroen-c3-b",
+    "type": "car",
+    "name": "Citroen C3",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.115
+  },
+  {
+    "id": "citroen-c3-d",
+    "type": "car",
+    "name": "Citroen C3",
+    "fuelType": "Dizel",
+    "emissionPerKm": 0.105
+  },
+  {
+    "id": "citroen-c4-b",
+    "type": "car",
+    "name": "Citroen C4",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.128
+  },
+  {
+    "id": "citroen-c4-e",
+    "type": "car",
+    "name": "Citroen e-C4",
+    "fuelType": "Elektrik",
+    "emissionPerKm": 0.016
+  },
+  {
+    "id": "citroen-c5-h",
+    "type": "car",
+    "name": "Citroen C5 Aircross",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.118
+  },
+  {
+    "id": "hyundai-i10-b",
+    "type": "car",
+    "name": "Hyundai i10",
+    "fuelType": "Benzin",
     "emissionPerKm": 0.110
   },
   {
-    "id": "car-5",
+    "id": "hyundai-i20-b",
     "type": "car",
     "name": "Hyundai i20",
     "fuelType": "Benzin",
     "emissionPerKm": 0.118
   },
   {
-    "id": "car-6",
+    "id": "hyundai-tucson-b",
     "type": "car",
-    "name": "Ford Focus",
+    "name": "Hyundai Tucson",
     "fuelType": "Benzin",
-    "emissionPerKm": 0.140
+    "emissionPerKm": 0.148
   },
   {
-    "id": "car-7",
+    "id": "hyundai-tucson-h",
+    "type": "car",
+    "name": "Hyundai Tucson",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.122
+  },
+  {
+    "id": "hyundai-kona-e",
+    "type": "car",
+    "name": "Hyundai Kona Electric",
+    "fuelType": "Elektrik",
+    "emissionPerKm": 0.015
+  },
+  {
+    "id": "peugeot-208-b",
+    "type": "car",
+    "name": "Peugeot 208",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.115
+  },
+  {
+    "id": "peugeot-2008-b",
+    "type": "car",
+    "name": "Peugeot 2008",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.122
+  },
+  {
+    "id": "peugeot-3008-h",
+    "type": "car",
+    "name": "Peugeot 3008",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.110
+  },
+  {
+    "id": "peugeot-408-b",
+    "type": "car",
+    "name": "Peugeot 408",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.135
+  },
+  {
+    "id": "opel-corsa-b",
+    "type": "car",
+    "name": "Opel Corsa",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.112
+  },
+  {
+    "id": "opel-astra-b",
     "type": "car",
     "name": "Opel Astra",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.125
+  },
+  {
+    "id": "opel-mokka-e",
+    "type": "car",
+    "name": "Opel Mokka-e",
+    "fuelType": "Elektrik",
+    "emissionPerKm": 0.017
+  },
+  {
+    "id": "dacia-duster-b",
+    "type": "car",
+    "name": "Dacia Duster",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.142
+  },
+  {
+    "id": "dacia-duster-l",
+    "type": "car",
+    "name": "Dacia Duster",
+    "fuelType": "LPG",
+    "emissionPerKm": 0.132
+  },
+  {
+    "id": "dacia-sandero-b",
+    "type": "car",
+    "name": "Dacia Sandero",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.118
+  },
+  {
+    "id": "skoda-octavia-b",
+    "type": "car",
+    "name": "Skoda Octavia",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.122
+  },
+  {
+    "id": "skoda-superb-d",
+    "type": "car",
+    "name": "Skoda Superb",
     "fuelType": "Dizel",
     "emissionPerKm": 0.125
   },
   {
-    "id": "car-8",
-    "type": "car",
-    "name": "Peugeot 301",
-    "fuelType": "Dizel",
-    "emissionPerKm": 0.108
-  },
-  {
-    "id": "car-9",
-    "type": "car",
-    "name": "Nissan Qashqai",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.155
-  },
-  {
-    "id": "car-10",
+    "id": "honda-civic-b",
     "type": "car",
     "name": "Honda Civic",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.128
-  },
-  {
-    "id": "car-11",
-    "type": "car",
-    "name": "Mazda 3",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.130
-  },
-  {
-    "id": "car-12",
-    "type": "car",
-    "name": "Skoda Octavia",
-    "fuelType": "Dizel",
-    "emissionPerKm": 0.122
-  },
-  {
-    "id": "car-13",
-    "type": "car",
-    "name": "Seat Leon",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.136
-  },
-  {
-    "id": "car-14",
-    "type": "car",
-    "name": "Dacia Sandero",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.110
-  },
-  {
-    "id": "car-15",
-    "type": "car",
-    "name": "Citroen C4",
     "fuelType": "Benzin",
     "emissionPerKm": 0.132
   },
   {
-    "id": "car-16",
+    "id": "honda-civic-h",
+    "type": "car",
+    "name": "Honda Civic",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.108
+  },
+  {
+    "id": "ford-focus-b",
+    "type": "car",
+    "name": "Ford Focus",
+    "fuelType": "Benzin",
+    "emissionPerKm": 0.132
+  },
+  {
+    "id": "ford-kuga-h",
+    "type": "car",
+    "name": "Ford Kuga",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.128
+  },
+  {
+    "id": "tesla-model-y-e",
+    "type": "car",
+    "name": "Tesla Model Y",
+    "fuelType": "Elektrik",
+    "emissionPerKm": 0.012
+  },
+  {
+    "id": "togg-t10x-e",
+    "type": "car",
+    "name": "Togg T10X",
+    "fuelType": "Elektrik",
+    "emissionPerKm": 0.015
+  },
+  {
+    "id": "nissan-qashqai-h",
+    "type": "car",
+    "name": "Nissan Qashqai",
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.118
+  },
+  {
+    "id": "kia-sportage-h",
     "type": "car",
     "name": "Kia Sportage",
-    "fuelType": "Dizel",
-    "emissionPerKm": 0.148
+    "fuelType": "Hibrit",
+    "emissionPerKm": 0.125
   },
   {
-    "id": "car-17",
-    "type": "car",
-    "name": "BMW 3 Serisi",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.175
-  },
-  {
-    "id": "car-18",
+    "id": "mercedes-c-b",
     "type": "car",
     "name": "Mercedes C Serisi",
-    "fuelType": "Dizel",
+    "fuelType": "Benzin",
     "emissionPerKm": 0.155
   },
   {
-    "id": "car-19",
+    "id": "bmw-3-b",
     "type": "car",
-    "name": "Audi A4",
+    "name": "BMW 3 Serisi",
     "fuelType": "Benzin",
-    "emissionPerKm": 0.172
+    "emissionPerKm": 0.160
   },
   {
-    "id": "car-20",
+    "id": "audi-a3-b",
     "type": "car",
-    "name": "Volvo S60",
+    "name": "Audi A3",
     "fuelType": "Benzin",
-    "emissionPerKm": 0.168
-  },
-  {
-    "id": "moto-1",
-    "type": "motorcycle",
-    "name": "Honda PCX 125",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.055
-  },
-  {
-    "id": "moto-2",
-    "type": "motorcycle",
-    "name": "Yamaha NMAX 155",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.065
-  },
-  {
-    "id": "moto-3",
-    "type": "motorcycle",
-    "name": "Suzuki Address 110",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.050
-  },
-  {
-    "id": "moto-4",
-    "type": "motorcycle",
-    "name": "Kymco Agility 125",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.058
-  },
-  {
-    "id": "moto-5",
-    "type": "motorcycle",
-    "name": "Kawasaki Ninja 300",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.070
-  },
-  {
-    "id": "moto-6",
-    "type": "motorcycle",
-    "name": "Honda CB 125F",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.052
-  },
-  {
-    "id": "moto-7",
-    "type": "motorcycle",
-    "name": "Yamaha YBR 125",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.053
-  },
-  {
-    "id": "moto-8",
-    "type": "motorcycle",
-    "name": "Bajaj Pulsar NS160",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.062
-  },
-  {
-    "id": "moto-9",
-    "type": "motorcycle",
-    "name": "Mondial 150 MH",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.060
-  },
-  {
-    "id": "moto-10",
-    "type": "motorcycle",
-    "name": "Kanuni Toros 250",
-    "fuelType": "Benzin",
-    "emissionPerKm": 0.075
+    "emissionPerKm": 0.128
   }
 ]

@@ -3,38 +3,56 @@
 
 let vehiclesData = [];
 
-// Fallback: Eğer JSON yüklenemezse kullanılacak veriler
+// Fallback: Eğer JSON yüklenemezse kullanılacak güncel Türkiye verileri
 const FALLBACK_VEHICLES = [
-  { "id": "car-1", "type": "car", "name": "Toyota Corolla", "fuelType": "Benzin", "emissionPerKm": 0.120 },
-  { "id": "car-2", "type": "car", "name": "Volkswagen Golf", "fuelType": "Benzin", "emissionPerKm": 0.135 },
-  { "id": "car-3", "type": "car", "name": "Renault Clio", "fuelType": "Benzin", "emissionPerKm": 0.115 },
-  { "id": "car-4", "type": "car", "name": "Fiat Egea", "fuelType": "Dizel", "emissionPerKm": 0.110 },
-  { "id": "car-5", "type": "car", "name": "Hyundai i20", "fuelType": "Benzin", "emissionPerKm": 0.118 },
-  { "id": "car-6", "type": "car", "name": "Ford Focus", "fuelType": "Benzin", "emissionPerKm": 0.140 },
-  { "id": "car-7", "type": "car", "name": "Opel Astra", "fuelType": "Dizel", "emissionPerKm": 0.125 },
-  { "id": "car-8", "type": "car", "name": "Peugeot 301", "fuelType": "Dizel", "emissionPerKm": 0.108 },
-  { "id": "car-9", "type": "car", "name": "Nissan Qashqai", "fuelType": "Benzin", "emissionPerKm": 0.155 },
-  { "id": "car-10", "type": "car", "name": "Honda Civic", "fuelType": "Benzin", "emissionPerKm": 0.128 },
-  { "id": "car-11", "type": "car", "name": "Mazda 3", "fuelType": "Benzin", "emissionPerKm": 0.130 },
-  { "id": "car-12", "type": "car", "name": "Skoda Octavia", "fuelType": "Dizel", "emissionPerKm": 0.122 },
-  { "id": "car-13", "type": "car", "name": "Seat Leon", "fuelType": "Benzin", "emissionPerKm": 0.136 },
-  { "id": "car-14", "type": "car", "name": "Dacia Sandero", "fuelType": "Benzin", "emissionPerKm": 0.110 },
-  { "id": "car-15", "type": "car", "name": "Citroen C4", "fuelType": "Benzin", "emissionPerKm": 0.132 },
-  { "id": "car-16", "type": "car", "name": "Kia Sportage", "fuelType": "Dizel", "emissionPerKm": 0.148 },
-  { "id": "car-17", "type": "car", "name": "BMW 3 Serisi", "fuelType": "Benzin", "emissionPerKm": 0.175 },
-  { "id": "car-18", "type": "car", "name": "Mercedes C Serisi", "fuelType": "Dizel", "emissionPerKm": 0.155 },
-  { "id": "car-19", "type": "car", "name": "Audi A4", "fuelType": "Benzin", "emissionPerKm": 0.172 },
-  { "id": "car-20", "type": "car", "name": "Volvo S60", "fuelType": "Benzin", "emissionPerKm": 0.168 },
-  { "id": "moto-1", "type": "motorcycle", "name": "Honda PCX 125", "fuelType": "Benzin", "emissionPerKm": 0.055 },
-  { "id": "moto-2", "type": "motorcycle", "name": "Yamaha NMAX 155", "fuelType": "Benzin", "emissionPerKm": 0.065 },
-  { "id": "moto-3", "type": "motorcycle", "name": "Suzuki Address 110", "fuelType": "Benzin", "emissionPerKm": 0.050 },
-  { "id": "moto-4", "type": "motorcycle", "name": "Kymco Agility 125", "fuelType": "Benzin", "emissionPerKm": 0.058 },
-  { "id": "moto-5", "type": "motorcycle", "name": "Kawasaki Ninja 300", "fuelType": "Benzin", "emissionPerKm": 0.070 },
-  { "id": "moto-6", "type": "motorcycle", "name": "Honda CB 125F", "fuelType": "Benzin", "emissionPerKm": 0.052 },
-  { "id": "moto-7", "type": "motorcycle", "name": "Yamaha YBR 125", "fuelType": "Benzin", "emissionPerKm": 0.053 },
-  { "id": "moto-8", "type": "motorcycle", "name": "Bajaj Pulsar NS160", "fuelType": "Benzin", "emissionPerKm": 0.062 },
-  { "id": "moto-9", "type": "motorcycle", "name": "Mondial 150 MH", "fuelType": "Benzin", "emissionPerKm": 0.060 },
-  { "id": "moto-10", "type": "motorcycle", "name": "Kanuni Toros 250", "fuelType": "Benzin", "emissionPerKm": 0.075 }
+  { "id": "fiat-egea-s-b", "type": "car", "name": "Fiat Egea Sedan", "fuelType": "Benzin", "emissionPerKm": 0.135 },
+  { "id": "fiat-egea-s-d", "type": "car", "name": "Fiat Egea Sedan", "fuelType": "Dizel", "emissionPerKm": 0.110 },
+  { "id": "fiat-egea-s-h", "type": "car", "name": "Fiat Egea Sedan", "fuelType": "Hibrit", "emissionPerKm": 0.098 },
+  { "id": "fiat-egea-c-b", "type": "car", "name": "Fiat Egea Cross", "fuelType": "Benzin", "emissionPerKm": 0.138 },
+  { "id": "fiat-egea-c-d", "type": "car", "name": "Fiat Egea Cross", "fuelType": "Dizel", "emissionPerKm": 0.115 },
+  { "id": "fiat-egea-c-h", "type": "car", "name": "Fiat Egea Cross", "fuelType": "Hibrit", "emissionPerKm": 0.102 },
+  { "id": "fiat-500-e", "type": "car", "name": "Fiat 500e", "fuelType": "Elektrik", "emissionPerKm": 0.018 },
+  { "id": "renault-clio-b", "type": "car", "name": "Renault Clio", "fuelType": "Benzin", "emissionPerKm": 0.115 },
+  { "id": "renault-clio-h", "type": "car", "name": "Renault Clio", "fuelType": "Hibrit", "emissionPerKm": 0.088 },
+  { "id": "renault-megane-b", "type": "car", "name": "Renault Megane Sedan", "fuelType": "Benzin", "emissionPerKm": 0.125 },
+  { "id": "renault-megane-d", "type": "car", "name": "Renault Megane Sedan", "fuelType": "Dizel", "emissionPerKm": 0.118 },
+  { "id": "renault-austral-h", "type": "car", "name": "Renault Austral", "fuelType": "Hibrit", "emissionPerKm": 0.105 },
+  { "id": "renault-zoe-e", "type": "car", "name": "Renault Zoe", "fuelType": "Elektrik", "emissionPerKm": 0.015 },
+  { "id": "toyota-corolla-b", "type": "car", "name": "Toyota Corolla", "fuelType": "Benzin", "emissionPerKm": 0.130 },
+  { "id": "toyota-corolla-h", "type": "car", "name": "Toyota Corolla", "fuelType": "Hibrit", "emissionPerKm": 0.082 },
+  { "id": "toyota-chr-h", "type": "car", "name": "Toyota C-HR", "fuelType": "Hibrit", "emissionPerKm": 0.086 },
+  { "id": "toyota-yaris-h", "type": "car", "name": "Toyota Yaris", "fuelType": "Hibrit", "emissionPerKm": 0.075 },
+  { "id": "togg-t10x-e", "type": "car", "name": "Togg T10X", "fuelType": "Elektrik", "emissionPerKm": 0.015 },
+  { "id": "togg-t10f-e", "type": "car", "name": "Togg T10F", "fuelType": "Elektrik", "emissionPerKm": 0.014 },
+  { "id": "vw-golf-b", "type": "car", "name": "Volkswagen Golf", "fuelType": "Benzin", "emissionPerKm": 0.128 },
+  { "id": "vw-golf-d", "type": "car", "name": "Volkswagen Golf", "fuelType": "Dizel", "emissionPerKm": 0.115 },
+  { "id": "vw-polo-b", "type": "car", "name": "Volkswagen Polo", "fuelType": "Benzin", "emissionPerKm": 0.112 },
+  { "id": "vw-passat-b", "type": "car", "name": "Volkswagen Passat", "fuelType": "Benzin", "emissionPerKm": 0.145 },
+  { "id": "vw-passat-d", "type": "car", "name": "Volkswagen Passat", "fuelType": "Dizel", "emissionPerKm": 0.130 },
+  { "id": "hyundai-i10-b", "type": "car", "name": "Hyundai i10", "fuelType": "Benzin", "emissionPerKm": 0.110 },
+  { "id": "hyundai-i20-b", "type": "car", "name": "Hyundai i20", "fuelType": "Benzin", "emissionPerKm": 0.118 },
+  { "id": "hyundai-tucson-b", "type": "car", "name": "Hyundai Tucson", "fuelType": "Benzin", "emissionPerKm": 0.148 },
+  { "id": "hyundai-tucson-d", "type": "car", "name": "Hyundai Tucson", "fuelType": "Dizel", "emissionPerKm": 0.135 },
+  { "id": "hyundai-tucson-h", "type": "car", "name": "Hyundai Tucson", "fuelType": "Hibrit", "emissionPerKm": 0.122 },
+  { "id": "peugeot-208-b", "type": "car", "name": "Peugeot 208", "fuelType": "Benzin", "emissionPerKm": 0.115 },
+  { "id": "peugeot-208-e", "type": "car", "name": "Peugeot e-208", "fuelType": "Elektrik", "emissionPerKm": 0.016 },
+  { "id": "peugeot-2008-b", "type": "car", "name": "Peugeot 2008", "fuelType": "Benzin", "emissionPerKm": 0.122 },
+  { "id": "peugeot-2008-e", "type": "car", "name": "Peugeot e-2008", "fuelType": "Elektrik", "emissionPerKm": 0.017 },
+  { "id": "peugeot-3008-h", "type": "car", "name": "Peugeot 3008", "fuelType": "Hibrit", "emissionPerKm": 0.110 },
+  { "id": "opel-corsa-b", "type": "car", "name": "Opel Corsa", "fuelType": "Benzin", "emissionPerKm": 0.112 },
+  { "id": "opel-corsa-e", "type": "car", "name": "Opel Corsa-e", "fuelType": "Elektrik", "emissionPerKm": 0.017 },
+  { "id": "opel-astra-b", "type": "car", "name": "Opel Astra", "fuelType": "Benzin", "emissionPerKm": 0.125 },
+  { "id": "opel-astra-h", "type": "car", "name": "Opel Astra", "fuelType": "Hibrit", "emissionPerKm": 0.095 },
+  { "id": "dacia-duster-b", "type": "car", "name": "Dacia Duster", "fuelType": "Benzin", "emissionPerKm": 0.142 },
+  { "id": "dacia-duster-d", "type": "car", "name": "Dacia Duster", "fuelType": "Dizel", "emissionPerKm": 0.128 },
+  { "id": "dacia-duster-l", "type": "car", "name": "Dacia Duster", "fuelType": "LPG", "emissionPerKm": 0.132 },
+  { "id": "tesla-model-y-e", "type": "car", "name": "Tesla Model Y", "fuelType": "Elektrik", "emissionPerKm": 0.012 },
+  { "id": "tesla-model-3-e", "type": "car", "name": "Tesla Model 3", "fuelType": "Elektrik", "emissionPerKm": 0.011 },
+  { "id": "byd-atto3-e", "type": "car", "name": "BYD Atto 3", "fuelType": "Elektrik", "emissionPerKm": 0.014 },
+  { "id": "byd-sealu-h", "type": "car", "name": "BYD Seal U", "fuelType": "Hibrit", "emissionPerKm": 0.092 },
+  { "id": "chery-tiggo7-b", "type": "car", "name": "Chery Tiggo 7 Pro", "fuelType": "Benzin", "emissionPerKm": 0.165 },
+  { "id": "chery-tiggo8-b", "type": "car", "name": "Chery Tiggo 8 Pro", "fuelType": "Benzin", "emissionPerKm": 0.175 },
+  { "id": "chery-omoda5-b", "type": "car", "name": "Chery Omoda 5", "fuelType": "Benzin", "emissionPerKm": 0.160 }
 ];
 
 /**
@@ -42,12 +60,10 @@ const FALLBACK_VEHICLES = [
  */
 async function loadVehicles() {
   try {
-    // Farklı path seçeneklerini dene
     const paths = [
       './data/vehicles.json',
       'data/vehicles.json',
-      '/data/vehicles.json',
-      '../data/vehicles.json'
+      '/data/vehicles.json'
     ];
 
     let loaded = false;
@@ -56,106 +72,139 @@ async function loadVehicles() {
         const response = await fetch(path);
         if (response.ok) {
           vehiclesData = await response.json();
-          console.log('Araç verileri yüklendi:', vehiclesData.length, 'araç');
           loaded = true;
           break;
         }
-      } catch (e) {
-        continue;
-      }
+      } catch (e) { continue; }
     }
 
-    if (!loaded) {
-      // Fallback verileri kullan
-      console.warn('JSON dosyası yüklenemedi, fallback veriler kullanılıyor.');
-      vehiclesData = FALLBACK_VEHICLES;
-      console.log('Fallback araç verileri yüklendi:', vehiclesData.length, 'araç');
-    }
+    if (!loaded) vehiclesData = FALLBACK_VEHICLES;
+
+    // Verileri işle (Marka ve Model'i ayır)
+    processVehiclesData();
+
+    initializeFilters();
   } catch (error) {
     console.error('Araç verileri yüklenirken hata oluştu:', error);
-
-    // Fallback: Eğer fetch çalışmazsa, fallback verileri kullan
-    console.warn('Fetch başarısız, fallback veriler kullanılıyor.');
     vehiclesData = FALLBACK_VEHICLES;
-    console.log('Fallback araç verileri yüklendi:', vehiclesData.length, 'araç');
-
-    // Kullanıcıya bilgi ver (sadece ilk kez)
-    if (!document.getElementById('json-warning')) {
-      const errorMsg = document.createElement('div');
-      errorMsg.id = 'json-warning';
-      errorMsg.style.cssText = 'background: #fff3cd; color: #856404; padding: 0.75rem; margin: 1rem 0; border-radius: 0.5rem; border: 2px solid #ffc107; font-size: 0.9rem;';
-      errorMsg.innerHTML = `
-        <strong>💡 İpucu:</strong> Daha iyi performans için local server kullanın:<br>
-        <code style="background: #fff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; display: inline-block; margin-top: 0.5rem;">
-          python3 -m http.server 8000
-        </code>
-        <br><small>Sonra tarayıcıda http://localhost:8000 adresine gidin.</small>
-      `;
-      const calculatorCard = document.querySelector('.calculator-card');
-      if (calculatorCard) {
-        calculatorCard.insertBefore(errorMsg, calculatorCard.firstChild);
-      }
-    }
-  }
-
-  // Veriler yüklendikten sonra select'i güncelle
-  if (vehiclesData.length > 0) {
-    const vehicleTypeSelect = document.getElementById('vehicleType');
-    if (vehicleTypeSelect && vehicleTypeSelect.value) {
-      updateVehicleModels();
-    }
+    processVehiclesData();
+    initializeFilters();
   }
 }
 
 /**
- * Araç tipi seçildiğinde model listesini günceller
+ * Verileri işle (Marka ve Model'i ayır)
+ */
+function processVehiclesData() {
+  vehiclesData = vehiclesData.map(v => {
+    const parts = v.name.split(' ');
+    return {
+      ...v,
+      brand: parts[0],
+      model: parts.slice(1).join(' ')
+    };
+  });
+}
+
+function initializeFilters() {
+  const brandSelect = document.getElementById('vehicleBrand');
+  const yearSelect = document.getElementById('vehicleYear');
+
+  // Translation support
+  const t = window.t || (typeof translations !== 'undefined' ? translations['tr'] : {});
+  if (!brandSelect || !yearSelect) return;
+
+  // Markaları doldur
+  const brands = [...new Set(vehiclesData.map(v => v.brand))].sort();
+  brandSelect.innerHTML = `<option value="">${t.select_brand || 'Marka seçin...'}</option>`;
+  brands.forEach(brand => {
+    const opt = document.createElement('option');
+    opt.value = brand;
+    opt.textContent = brand;
+    brandSelect.appendChild(opt);
+  });
+
+  // Yılları doldur (2010 - 2026)
+  yearSelect.innerHTML = `<option value="">${t.select_fuel || 'Seçiniz...'}</option>`;
+  for (let year = 2026; year >= 2010; year--) {
+    const opt = document.createElement('option');
+    opt.value = year;
+    opt.textContent = year;
+    yearSelect.appendChild(opt);
+  }
+}
+
+/**
+ * Marka seçildiğinde modelleri günceller
  */
 function updateVehicleModels() {
-  const vehicleType = document.getElementById('vehicleType').value;
-  const vehicleModelSelect = document.getElementById('vehicleModel');
+  const brand = document.getElementById('vehicleBrand').value;
+  const modelSelect = document.getElementById('vehicleModel');
+  const fuelSelect = document.getElementById('fuelType');
 
-  // Select'i temizle
-  vehicleModelSelect.innerHTML = '<option value="">Araç modeli seçin...</option>';
+  // Translation support
+  const t = window.t || (typeof translations !== 'undefined' ? translations['tr'] : {});
+  if (!modelSelect || !fuelSelect) return;
 
-  if (!vehicleType) {
-    vehicleModelSelect.disabled = true;
+  modelSelect.innerHTML = `<option value="">${t.select_model || 'Model seçin...'}</option>`;
+  fuelSelect.innerHTML = `<option value="">${t.select_fuel || 'Seçiniz...'}</option>`;
+  fuelSelect.disabled = true;
+
+  if (!brand) {
+    modelSelect.disabled = true;
     return;
   }
 
-  // Seçilen tipe göre araçları filtrele
-  const filteredVehicles = vehiclesData.filter(v => v.type === vehicleType);
-
-  // Option'ları ekle
-  filteredVehicles.forEach(vehicle => {
-    const option = document.createElement('option');
-    option.value = vehicle.id;
-    option.textContent = `${vehicle.name} (${vehicle.fuelType})`;
-    option.dataset.emission = vehicle.emissionPerKm;
-    option.dataset.fuelType = vehicle.fuelType;
-    vehicleModelSelect.appendChild(option);
+  const models = [...new Set(vehiclesData.filter(v => v.brand === brand).map(v => v.model))].sort();
+  models.forEach(model => {
+    const opt = document.createElement('option');
+    opt.value = model;
+    opt.textContent = model;
+    modelSelect.appendChild(opt);
   });
 
-  vehicleModelSelect.disabled = false;
+  modelSelect.disabled = false;
+}
+
+/**
+ * Model seçildiğinde yakıt tiplerini günceller
+ */
+function updateFuelTypes() {
+  const brand = document.getElementById('vehicleBrand').value;
+  const model = document.getElementById('vehicleModel').value;
+  const fuelSelect = document.getElementById('fuelType');
+
+  // Translation support
+  const t = window.t || (typeof translations !== 'undefined' ? translations['tr'] : {});
+  if (!fuelSelect) return;
+
+  fuelSelect.innerHTML = `<option value="">${t.select_fuel || 'Seçiniz...'}</option>`;
+
+  if (!model) {
+    fuelSelect.disabled = true;
+    return;
+  }
+
+  // SADECE seçilen marka ve modele ait yakıt tiplerini filtrele
+  const availableVehicles = vehiclesData.filter(v => v.brand === brand && v.model === model);
+
+  availableVehicles.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.id;
+    opt.textContent = v.fuelType;
+    fuelSelect.appendChild(opt);
+  });
+
+  fuelSelect.disabled = false;
 }
 
 /**
  * CO2 salımından ağaç sayısını hesaplar
- * @param {number} emissionPerKm - Km başına CO2 salımı (kg)
- * @param {number} yearlyKm - Yıllık km
- * @returns {number} - Dikilmesi gereken tahmini ağaç sayısı
  */
 function calculateTrees(emissionPerKm, yearlyKm) {
-  // Toplam yıllık CO2 salımı (kg)
   const totalCO2 = emissionPerKm * yearlyKm;
-
-  // Bir ağacın yılda emdiği ortalama CO2 miktarı: yaklaşık 21 kg
-  // Bu değer örnek olup, proje ilerledikçe güncellenecektir
-  const CO2_PER_TREE_YEARLY = 21;
-
-  // Gerekli ağaç sayısı
-  const treesNeeded = totalCO2 / CO2_PER_TREE_YEARLY;
-
-  return Math.ceil(treesNeeded); // Yukarı yuvarla
+  const CO2_PER_TREE_YEARLY = 21; // Ortalama 21kg CO2 emilimi
+  return Math.ceil(totalCO2 / CO2_PER_TREE_YEARLY);
 }
 
 /**
@@ -164,61 +213,32 @@ function calculateTrees(emissionPerKm, yearlyKm) {
 function handleCalculation(event) {
   event.preventDefault();
 
-  // Form değerlerini al
-  const vehicleType = document.getElementById('vehicleType').value;
-  const vehicleModelId = document.getElementById('vehicleModel').value;
+  const vehicleId = document.getElementById('fuelType').value;
   const yearlyKm = parseFloat(document.getElementById('yearlyKm').value);
+  const year = document.getElementById('vehicleYear').value;
 
-  // Validasyon
-  if (!vehicleType) {
-    alert('Lütfen araç tipi seçin.');
+  if (!vehicleId || !yearlyKm || !year) {
+    alert('Lütfen tüm alanları doldurun.');
     return;
   }
 
-  if (!vehicleModelId) {
-    alert('Lütfen araç modeli seçin.');
-    return;
-  }
+  const selectedVehicle = vehiclesData.find(v => v.id === vehicleId);
+  if (!selectedVehicle) return;
 
-  if (!yearlyKm || yearlyKm <= 0) {
-    alert('Lütfen geçerli bir yıllık km değeri girin.');
-    return;
-  }
-
-  if (yearlyKm > 100000) {
-    alert('Yıllık km değeri çok yüksek görünüyor. Lütfen kontrol edin.');
-    return;
-  }
-
-  // Seçilen aracı bul
-  const selectedVehicle = vehiclesData.find(v => v.id === vehicleModelId);
-
-  if (!selectedVehicle) {
-    alert('Araç bilgisi bulunamadı.');
-    return;
-  }
-
-  // Hesaplama yap
   const treesNeeded = calculateTrees(selectedVehicle.emissionPerKm, yearlyKm);
   const totalCO2 = (selectedVehicle.emissionPerKm * yearlyKm).toFixed(2);
 
-  // Sonucu göster
-  displayResult(treesNeeded, totalCO2, selectedVehicle.name, yearlyKm, selectedVehicle.fuelType);
+  displayResult(treesNeeded, totalCO2, selectedVehicle, yearlyKm, year);
 }
 
 /**
  * Çocuk dostu mesaj oluşturur
  */
 function getChildFriendlyMessage(treesNeeded) {
-  if (treesNeeded <= 10) {
-    return `Bu da küçük bir sınıfın birlikte dikebileceği kadar ağaç!`;
-  } else if (treesNeeded <= 50) {
-    return `Bu da birkaç sınıfın birlikte dikebileceği kadar ağaç!`;
-  } else if (treesNeeded <= 100) {
-    return `Bu da tüm okulun birlikte dikebileceği kadar ağaç!`;
-  } else {
-    return `Bu da birçok okulun birlikte dikebileceği kadar ağaç!`;
-  }
+  if (treesNeeded <= 10) return `Küçük bir sınıfın birlikte dikebileceği kadar ağaç!`;
+  if (treesNeeded <= 50) return `Birkaç sınıfın birlikte dikebileceği kadar ağaç!`;
+  if (treesNeeded <= 100) return `Tüm okulun birlikte dikebileceği kadar ağaç!`;
+  return `Birçok okulun birlikte dikebileceği kadar ağaç!`;
 }
 
 /**
@@ -231,18 +251,13 @@ function visualizeTrees(treesNeeded) {
 
   if (!treeVisualization || !treeGrid || !treeInfo) return;
 
-  // Maksimum 20 ağaç ikonu göster
   const MAX_TREES = 20;
   const treesToShow = Math.min(treesNeeded, MAX_TREES);
   const treesPerIcon = treesNeeded > MAX_TREES ? Math.ceil(treesNeeded / MAX_TREES) : 1;
 
-  // Önceki ağaçları temizle
   treeGrid.innerHTML = '';
-
-  // Ağaç emoji çeşitleri
   const treeEmojis = ['🌳', '🌲', '🌴', '🎄'];
 
-  // Ağaç ikonlarını oluştur
   for (let i = 0; i < treesToShow; i++) {
     const treeItem = document.createElement('div');
     treeItem.className = 'tree-item';
@@ -250,17 +265,15 @@ function visualizeTrees(treesNeeded) {
     treeGrid.appendChild(treeItem);
   }
 
-  // Bilgi metnini oluştur
+  // Bilgi metni
+  const t = window.t || translations['tr'];
   if (treesNeeded > MAX_TREES) {
-    treeInfo.textContent = `Her ağaç ikonu ${treesPerIcon} ağacı temsil ediyor. Toplam ${treesNeeded} ağaç dikilmesi gerekiyor!`;
+    treeInfo.textContent = t.tree_represent.replace('{count}', treesPerIcon).replace('{total}', treesNeeded);
   } else {
-    treeInfo.textContent = `Toplam ${treesNeeded} ağaç dikilmesi gerekiyor!`;
+    treeInfo.textContent = t.tree_total.replace('{total}', treesNeeded);
   }
 
-  // Görselleştirme bölümünü göster
   treeVisualization.classList.add('active');
-
-  // Animasyon için kısa bir gecikme
   setTimeout(() => {
     treeVisualization.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, 500);
@@ -269,66 +282,79 @@ function visualizeTrees(treesNeeded) {
 /**
  * Hesaplama sonucunu ekranda gösterir
  */
-function displayResult(treesNeeded, totalCO2, vehicleName, yearlyKm, fuelType) {
+/**
+ * Hesaplama sonucunu ekranda gösterir
+ */
+function displayResult(treesNeeded, totalCO2, vehicle, yearlyKm, year) {
   const resultSection = document.getElementById('resultSection');
   const resultNumber = document.getElementById('resultNumber');
   const resultText = document.getElementById('resultText');
+  const donationSpendText = document.getElementById('donationSpendText');
+  const donationButton = document.getElementById('donationButton');
 
-  // Sonuç metnini oluştur
-  const formattedKm = yearlyKm.toLocaleString('tr-TR');
-  const formattedCO2 = parseFloat(totalCO2).toLocaleString('tr-TR');
-  const friendlyMessage = getChildFriendlyMessage(treesNeeded);
+  // Translation support
+  const t = window.t || translations['tr'];
+  if (!resultNumber || !resultText || !donationSpendText || !donationButton) return;
 
-  // Confetti animasyonu göster (eğer animations.js yüklüyse)
+  const formattedKm = yearlyKm.toLocaleString(window.currentLang === 'en' ? 'en-US' : 'tr-TR');
+  const formattedCO2 = parseFloat(totalCO2).toLocaleString(window.currentLang === 'en' ? 'en-US' : 'tr-TR');
+
   if (window.ecoAnimations && window.ecoAnimations.createConfetti) {
     window.ecoAnimations.createConfetti();
   }
 
-  // Sayı animasyonu ile göster
+  // Sayı animasyonu
+  const treesLabel = t.result_trees || (window.currentLang === 'en' ? 'TREES' : 'AĞAÇ');
+  resultNumber.textContent = treesNeeded + ' ' + treesLabel;
+
   if (window.ecoAnimations && window.ecoAnimations.animateNumber) {
-    resultNumber.textContent = '0 AĞAÇ';
-    window.ecoAnimations.animateNumber(resultNumber, 0, treesNeeded, 1500);
-    // Animasyon bitince "AĞAÇ" ekle
-    setTimeout(() => {
-      resultNumber.textContent = treesNeeded + ' AĞAÇ';
-    }, 1500);
-  } else {
-    resultNumber.textContent = treesNeeded + ' AĞAÇ';
+    window.ecoAnimations.animateNumber(resultNumber, 0, treesNeeded, 1500, ' ' + treesLabel);
   }
-  resultText.innerHTML = `
-    <strong>${vehicleName}</strong> (${fuelType || 'Benzin'}) ile yılda <strong>${formattedKm} km</strong> yol aldığınızda,
-    yaklaşık <strong>${formattedCO2} kg CO₂</strong> salımı yaparsınız.<br><br>
-    Bu karbon ayak izini dengelemek için <strong style="color: var(--color-primary); font-size: 1.2em;">${treesNeeded} ağaç</strong> dikilmesi gerekir.<br><br>
-    <span style="color: var(--color-secondary); font-weight: 600; font-size: 1.1em;">${friendlyMessage}</span>
-  `;
 
-  // Sonuç bölümünü göster
+  // Dinamik mesaj oluşturma
+  const vehicleInfo = `${vehicle.brand} ${vehicle.model}`;
+  const fuelType = vehicle.fuelType; // Could translate this too if needed
+
+  if (window.currentLang === 'en') {
+    resultText.innerHTML = `By driving <strong>${formattedKm} km</strong> yearly in your <strong>${year} ${vehicleInfo} (${fuelType})</strong>, you produce approximately <strong>${formattedCO2} kg CO₂</strong>.<br><br>To balance this carbon footprint, <strong>${treesNeeded} trees</strong> need to be planted.`;
+  } else {
+    resultText.innerHTML = `<strong>${year} ${vehicleInfo} (${fuelType})</strong> ile yıllık <strong>${formattedKm} km</strong> yaparak yaklaşık <strong>${formattedCO2} kg CO₂</strong> üretiyorsunuz.<br><br>Bu karbon ayak izini dengelemek için <strong>${treesNeeded} ağaç</strong> dikilmesi gerekir.`;
+  }
+
+  // Bağış mesajı
+  donationSpendText.textContent = t.donation_spending_initial;
+  donationSpendText.style.display = 'block';
+
+  donationButton.textContent = t.donation_target.replace('{trees}', treesNeeded);
+  donationButton.style.display = 'inline-block';
+
   resultSection.classList.add('active');
-
-  // Ağaç görselleştirmesini oluştur
   visualizeTrees(treesNeeded);
 
-  // Sonuç bölümüne kaydır
-  resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  setTimeout(() => {
+    resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
 
 /**
  * Sayfa yüklendiğinde çalışacak fonksiyon
  */
 document.addEventListener('DOMContentLoaded', function () {
-  // Araç verilerini yükle
   loadVehicles();
 
-  // Event listener'ları ekle
-  const vehicleTypeSelect = document.getElementById('vehicleType');
+  const brandSelect = document.getElementById('vehicleBrand');
+  const modelSelect = document.getElementById('vehicleModel');
   const calculatorForm = document.getElementById('calculatorForm');
 
-  if (vehicleTypeSelect) {
-    vehicleTypeSelect.addEventListener('change', updateVehicleModels);
+  if (brandSelect) {
+    brandSelect.addEventListener('change', updateVehicleModels);
+  }
+
+  if (modelSelect) {
+    modelSelect.addEventListener('change', updateFuelTypes);
   }
 
   if (calculatorForm) {
     calculatorForm.addEventListener('submit', handleCalculation);
   }
 });
-
