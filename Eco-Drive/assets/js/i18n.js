@@ -52,6 +52,7 @@ const translations = {
         // Footer
         footer_p1: "Bu website, <strong>Tech4Peace Jr. FTC Takımı</strong> ve <strong>Yeşil Okul Kulübü</strong> öğrenciler tarafından geliştirilmiştir.",
         footer_copy: "© 2024 Eco Drive | Project Pangea",
+        footer_copy2: "Powered By Zugo Bilgi Sistemleri A.Ş.",
         footer_insta: "Instagram: ",
 
         // About Team Page
