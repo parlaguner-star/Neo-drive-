@@ -31,7 +31,7 @@ const translations = {
         result_note: "* Hesaplama değerleri tahmini olup, proje geliştikçe güncellenecektir.",
         result_trees: "AĞAÇ",
         donation_spending_initial: "Küçük adımlarla büyük farklar yaratabiliriz!",
-        donation_target: "Hedef: {trees} ağaç dikmek",
+        donation_target: "Bu ağaçların ne kadarını doğaya ödemek istersiniz?",
         btn_donation: "Birkaç ağaç bağışlayarak bu sayıyı azaltmaya başlamak ister misiniz?",
 
         // Tree Visualization
