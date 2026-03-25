@@ -1,4 +1,4 @@
-// Eco Drive - UI Davranışları
+// Yeşil Kilometreler - UI Davranışları
 // Bu dosya menü açma/kapama, scroll efektleri gibi UI işlemlerini yönetir
 
 /**

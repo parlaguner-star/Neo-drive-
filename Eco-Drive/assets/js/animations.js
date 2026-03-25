@@ -1,4 +1,4 @@
-// Eco Drive - Enhanced Animations & Effects
+// Yeşil Kilometreler - Enhanced Animations & Effects
 
 // Confetti Animation
 function createConfetti() {
