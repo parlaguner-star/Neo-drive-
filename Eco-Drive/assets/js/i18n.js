@@ -10,7 +10,7 @@ const translations = {
 
         // Hero
         hero_h1: "Arabanız Kaç Ağaç İster?",
-        hero_p: "Tech4Peace Jr. ve Yeşil Okul Projesi'nün hazırladığı bu siteyle, aracınız için kaç ağaç dikilmesi gerektiğini hesaplayabilirsiniz. Hesaplama yaptıktan sonra ağaçları ekranda görebilirsiniz!",
+        hero_p: "Tech4Peace Jr. ve Yeşil Okul Projesi'nin hazırladığı bu siteyle, aracınız için kaç ağaç dikilmesi gerektiğini hesaplayabilirsiniz. Hesaplama yaptıktan sonra ağaçları ekranda görebilirsiniz!",
 
         // Calculator Form
         calc_h2: "Karbon Ayak İzi Hesaplayıcı",
@@ -30,9 +30,9 @@ const translations = {
         result_initial: "Hesaplama sonucunuz burada görünecek.",
         result_note: "* Hesaplama değerleri yaklaşık olup, proje geliştikçe güncellenecektir.",
         result_trees: "AĞAÇ",
-        donation_spending_initial: "Küçük adımlarla büyük farklar yaratabiliriz!",
+        donation_spending_initial: "Bu ağaçların ne kadarını doğaya ödemek istersiniz?",
         donation_target: "Bu ağaçların ne kadarını doğaya ödemek istersiniz?",
-        btn_donation: "Birkaç ağaç bağışlayarak bu sayıyı azaltmaya başlamak ister misiniz?",
+        btn_donation: "Bağışla",
 
         // Tree Visualization
         tree_h3: "Ağaçları Gör!",
@@ -50,7 +50,7 @@ const translations = {
         btn_learn_project: "Projeyi Öğren",
 
         // Footer
-        footer_p1: "Bu website, <strong>Tech4Peace Jr. FTC Takımı</strong> ve <strong>Yeşil Okul Projesi</strong> öğrenciler tarafından geliştirilmiştir.",
+        footer_p1: "Bu website, <strong>Tech4Peace Jr. FTC Takımı</strong> ve <strong>Yeşil Okul Projesi</strong> öğrencileri tarafından geliştirilmiştir.",
         footer_copy: "© 2024 Yeşil Kilometreler | Project Pangea",
         footer_powered: "Powered By Zugo Bilgi Sistemleri A.Ş.",
         footer_insta: "Instagram: ",
@@ -228,9 +228,9 @@ const translations = {
         result_initial: "Your calculation result will appear here.",
         result_note: "* Calculation values are estimates and will be updated as the project develops.",
         result_trees: "TREES",
-        donation_spending_initial: "Small steps can make big differences!",
+        donation_spending_initial: "Would you like to start reducing this number by donating a few trees?",
         donation_target: "Goal: Plant {trees} trees",
-        btn_donation: "Would you like to start reducing this number by donating a few trees?",
+        btn_donation: "Donate Now",
 
         // Tree Visualization
         tree_h3: "See the Trees!",

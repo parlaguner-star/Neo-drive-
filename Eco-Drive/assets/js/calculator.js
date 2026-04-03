@@ -341,7 +341,7 @@ function displayResult(treesNeeded, totalCO2, vehicle, yearlyKm, year) {
   donationSpendText.textContent = t.donation_spending_initial;
   donationSpendText.style.display = 'block';
 
-  donationButton.textContent = t.donation_target.replace('{trees}', treesNeeded);
+  donationButton.textContent = t.btn_donation;
   donationButton.style.display = 'inline-block';
 
   resultSection.classList.add('active');
