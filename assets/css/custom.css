@@ -141,10 +141,11 @@ body::before {
 }
 
 .navbar-logo img {
-  height: 32px;
-  max-width: 160px;
+  height: 44px;
+  max-width: 220px;
   width: auto;
   object-fit: contain;
+  border-radius: 0;
 }
 
 .navbar-logo span {

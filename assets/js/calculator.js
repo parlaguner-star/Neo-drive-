@@ -347,9 +347,9 @@ function displayResult(treesNeeded, totalCO2, vehicle, yearlyKm, year) {
   resultSection.classList.add('active');
   visualizeTrees(treesNeeded);
 
-  // Scroll to donation button area so users see the result number + donation CTA
+  // Scroll to result section so users see tree count + donation CTA together
   setTimeout(() => {
-    donationButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, 300);
 }
 
