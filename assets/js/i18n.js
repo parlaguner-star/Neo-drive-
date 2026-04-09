@@ -50,7 +50,7 @@ const translations = {
         btn_learn_project: "Projeyi Öğren",
 
         // Footer
-        footer_p1: "Bu website, <strong>Tech4Peace FTC Takımı</strong> ve <strong>Yeşil Okul Projesi</strong> öğrencileri tarafından geliştirilmiştir.",
+        footer_p1: "Bu website, <strong>Tech4Peace FIRST Robotik Takımı</strong> ve <strong>Yeşil Okul Projesi</strong> öğrencileri tarafından geliştirilmiştir.",
         footer_copy: "© 2024 Yeşil Kilometreler | Project Pangea",
         footer_powered: "Powered By Zugo Bilgi Sistemleri A.Ş.",
         footer_insta: "Instagram: ",
@@ -248,7 +248,7 @@ const translations = {
         btn_learn_project: "Learn Project",
 
         // Footer
-        footer_p1: "This website was developed by <strong>Tech4Peace FTC Team</strong> and <strong>Green School Club</strong> students.",
+        footer_p1: "This website was developed by <strong>Tech4Peace FIRST Robotics Team</strong> and <strong>Green School Club</strong> students.",
         footer_copy: "© 2024 Green Kilometers | Project Pangea",
         footer_powered: "Powered By Zugo Bilgi Sistemleri A.Ş.",
         footer_insta: "Instagram: ",
