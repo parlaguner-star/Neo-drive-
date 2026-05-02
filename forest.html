@@ -562,7 +562,7 @@
         camera.getWorldDirection(forward);
         forward.y = 0;
         forward.normalize();
-        right.crossVectors(forward, new THREE.Vector3(0, -1, 0)).normalize();
+        right.crossVectors(forward, new THREE.Vector3(0, 1, 0)).normalize();
 
         if (keys['KeyW'] || keys['ArrowUp'])    moveDir.add(forward);
         if (keys['KeyS'] || keys['ArrowDown'])   moveDir.sub(forward);
