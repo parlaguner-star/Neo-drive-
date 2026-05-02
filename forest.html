@@ -6,7 +6,7 @@
   <title>Yeşil Kilometreler — Sanal Orman</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { overflow: hidden; background: #000; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { overflow: hidden; background: #000; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; touch-action: none; -webkit-user-select: none; user-select: none; }
     canvas { display: block; }
 
     #overlay {
@@ -90,6 +90,53 @@
       background: rgba(255,255,255,0.2);
       margin: 0 12px;
       vertical-align: middle;
+    }
+
+    /* ── Mobile Virtual Joystick ── */
+    #joystick-zone {
+      display: none;
+      position: absolute;
+      bottom: 28px;
+      left: 28px;
+      width: 130px;
+      height: 130px;
+      pointer-events: all;
+      z-index: 20;
+    }
+    #joystick-base {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.18);
+      position: relative;
+    }
+    #joystick-thumb {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(140, 255, 140, 0.45);
+      border: 2px solid rgba(140, 255, 140, 0.6);
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      transition: none;
+    }
+    #touch-look-zone {
+      display: none;
+      position: absolute;
+      top: 0; right: 0;
+      width: 60%;
+      height: 100%;
+      pointer-events: all;
+      z-index: 15;
+    }
+    @media (pointer: coarse), (max-width: 768px) {
+      #joystick-zone { display: block; }
+      #touch-look-zone { display: block; }
+      #controls-hint.desktop-hint { display: none; }
+      #controls-hint-mobile { display: block !important; }
+      #crosshair { display: none; }
     }
 
     #crosshair {
@@ -189,19 +236,32 @@
 
     <div id="crosshair"></div>
 
-    <div id="controls-hint">
+    <div id="controls-hint" class="desktop-hint">
       Hareket: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
       <span class="sep"></span>
       Bak: Fare
       <span class="sep"></span>
       Çıkış: <kbd>ESC</kbd>
     </div>
+    <div id="controls-hint-mobile" style="display:none; position:absolute; bottom:28px; right:28px; background:rgba(0,0,0,0.5); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:8px 16px; color:rgba(255,255,255,0.65); font-size:12px; white-space:nowrap;">
+      ◀ Hareket &nbsp;|&nbsp; Bak ▶
+    </div>
+
+    <!-- Virtual Joystick -->
+    <div id="joystick-zone">
+      <div id="joystick-base">
+        <div id="joystick-thumb"></div>
+      </div>
+    </div>
+
+    <!-- Touch look area (right side of screen) -->
+    <div id="touch-look-zone"></div>
   </div>
 
   <div id="lock-screen">
     <div class="title">🌲</div>
     <h2>Ormana Geri Dön</h2>
-    <p>Sanal ormanı keşfetmek için tıklayın</p>
+    <p id="lock-hint-text">Sanal ormanı keşfetmek için tıklayın</p>
     <button id="lock-btn">Ormana Gir</button>
   </div>
 
@@ -499,7 +559,12 @@
       })();
 
       /* ──────────────────────────────────────
-         POINTER LOCK CONTROLS (manual)
+         DEVICE DETECTION
+      ────────────────────────────────────── */
+      var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+      /* ──────────────────────────────────────
+         POINTER LOCK + TOUCH CONTROLS
       ────────────────────────────────────── */
       var euler = new THREE.Euler(0, 0, 0, 'YXZ');
       var isLocked = false;
@@ -508,30 +573,47 @@
       var lockScreen = document.getElementById('lock-screen');
       var lockBtn = document.getElementById('lock-btn');
       var crosshair = document.getElementById('crosshair');
+      var lockHintText = document.getElementById('lock-hint-text');
 
-      function requestLock() {
-        renderer.domElement.requestPointerLock();
+      /* Update lock screen text for mobile */
+      if (isTouchDevice && lockHintText) {
+        lockHintText.textContent = 'Ormanı keşfetmek için dokunun';
+      }
+
+      function enterForest() {
+        if (isTouchDevice) {
+          /* Mobile: skip pointer lock, just hide lock screen */
+          isLocked = true;
+          lockScreen.classList.add('hidden');
+        } else {
+          /* Desktop: use pointer lock */
+          renderer.domElement.requestPointerLock();
+        }
       }
 
       lockBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        requestLock();
+        enterForest();
       });
-      lockScreen.addEventListener('click', requestLock);
+      lockScreen.addEventListener('click', enterForest);
 
+      /* Desktop pointer lock change */
       document.addEventListener('pointerlockchange', function () {
-        isLocked = !!document.pointerLockElement;
-        if (isLocked) {
-          lockScreen.classList.add('hidden');
-          crosshair.classList.add('visible');
-        } else {
-          lockScreen.classList.remove('hidden');
-          crosshair.classList.remove('visible');
+        if (!isTouchDevice) {
+          isLocked = !!document.pointerLockElement;
+          if (isLocked) {
+            lockScreen.classList.add('hidden');
+            crosshair.classList.add('visible');
+          } else {
+            lockScreen.classList.remove('hidden');
+            crosshair.classList.remove('visible');
+          }
         }
       });
 
+      /* Desktop mouse look */
       document.addEventListener('mousemove', function (e) {
-        if (!isLocked) return;
+        if (!isLocked || isTouchDevice) return;
         var mx = e.movementX || 0;
         var my = e.movementY || 0;
         euler.setFromQuaternion(camera.quaternion);
@@ -540,6 +622,116 @@
         euler.x = Math.max(-PI_2, Math.min(PI_2, euler.x));
         camera.quaternion.setFromEuler(euler);
       });
+
+      /* ──────────────────────────────────────
+         MOBILE: TOUCH LOOK (right side drag)
+      ────────────────────────────────────── */
+      var touchLookZone = document.getElementById('touch-look-zone');
+      var lookTouchId = null;
+      var lastLookX = 0;
+      var lastLookY = 0;
+
+      if (touchLookZone) {
+        touchLookZone.addEventListener('touchstart', function (e) {
+          if (!isLocked) return;
+          var t = e.changedTouches[0];
+          lookTouchId = t.identifier;
+          lastLookX = t.clientX;
+          lastLookY = t.clientY;
+          e.preventDefault();
+        }, { passive: false });
+
+        touchLookZone.addEventListener('touchmove', function (e) {
+          if (!isLocked) return;
+          for (var i = 0; i < e.changedTouches.length; i++) {
+            var t = e.changedTouches[i];
+            if (t.identifier === lookTouchId) {
+              var dx = t.clientX - lastLookX;
+              var dy = t.clientY - lastLookY;
+              lastLookX = t.clientX;
+              lastLookY = t.clientY;
+              euler.setFromQuaternion(camera.quaternion);
+              euler.y -= dx * 0.004;
+              euler.x -= dy * 0.004;
+              euler.x = Math.max(-PI_2, Math.min(PI_2, euler.x));
+              camera.quaternion.setFromEuler(euler);
+            }
+          }
+          e.preventDefault();
+        }, { passive: false });
+
+        touchLookZone.addEventListener('touchend', function (e) {
+          for (var i = 0; i < e.changedTouches.length; i++) {
+            if (e.changedTouches[i].identifier === lookTouchId) {
+              lookTouchId = null;
+            }
+          }
+        });
+      }
+
+      /* ──────────────────────────────────────
+         MOBILE: VIRTUAL JOYSTICK (left side)
+      ────────────────────────────────────── */
+      var joystickZone = document.getElementById('joystick-zone');
+      var joystickBase = document.getElementById('joystick-base');
+      var joystickThumb = document.getElementById('joystick-thumb');
+      var joyTouchId = null;
+      var joystickInput = { x: 0, y: 0 }; /* -1 to 1 */
+      var JOY_RADIUS = 40; /* max thumb travel in px */
+
+      if (joystickZone) {
+        joystickZone.addEventListener('touchstart', function (e) {
+          if (!isLocked) return;
+          var t = e.changedTouches[0];
+          joyTouchId = t.identifier;
+          updateJoystick(t);
+          e.preventDefault();
+        }, { passive: false });
+
+        joystickZone.addEventListener('touchmove', function (e) {
+          if (!isLocked) return;
+          for (var i = 0; i < e.changedTouches.length; i++) {
+            if (e.changedTouches[i].identifier === joyTouchId) {
+              updateJoystick(e.changedTouches[i]);
+            }
+          }
+          e.preventDefault();
+        }, { passive: false });
+
+        joystickZone.addEventListener('touchend', function (e) {
+          for (var i = 0; i < e.changedTouches.length; i++) {
+            if (e.changedTouches[i].identifier === joyTouchId) {
+              joyTouchId = null;
+              joystickInput.x = 0;
+              joystickInput.y = 0;
+              joystickThumb.style.transform = 'translate(-50%, -50%)';
+            }
+          }
+        });
+        joystickZone.addEventListener('touchcancel', function () {
+          joyTouchId = null;
+          joystickInput.x = 0;
+          joystickInput.y = 0;
+          joystickThumb.style.transform = 'translate(-50%, -50%)';
+        });
+      }
+
+      function updateJoystick(touch) {
+        var rect = joystickBase.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2;
+        var cy = rect.top + rect.height / 2;
+        var dx = touch.clientX - cx;
+        var dy = touch.clientY - cy;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > JOY_RADIUS) {
+          dx = dx / dist * JOY_RADIUS;
+          dy = dy / dist * JOY_RADIUS;
+          dist = JOY_RADIUS;
+        }
+        joystickInput.x = dx / JOY_RADIUS;
+        joystickInput.y = dy / JOY_RADIUS;
+        joystickThumb.style.transform = 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px))';
+      }
 
       /* ──────────────────────────────────────
          KEYBOARD INPUT
@@ -564,10 +756,17 @@
         forward.normalize();
         right.crossVectors(forward, new THREE.Vector3(0, 1, 0)).normalize();
 
+        /* Keyboard input */
         if (keys['KeyW'] || keys['ArrowUp'])    moveDir.add(forward);
         if (keys['KeyS'] || keys['ArrowDown'])   moveDir.sub(forward);
         if (keys['KeyA'] || keys['ArrowLeft'])    moveDir.sub(right);
         if (keys['KeyD'] || keys['ArrowRight'])   moveDir.add(right);
+
+        /* Joystick input (mobile) — y is inverted: up on screen = forward */
+        if (Math.abs(joystickInput.x) > 0.15 || Math.abs(joystickInput.y) > 0.15) {
+          moveDir.addScaledVector(forward, -joystickInput.y);
+          moveDir.addScaledVector(right, joystickInput.x);
+        }
 
         if (moveDir.lengthSq() === 0) return;
         moveDir.normalize().multiplyScalar(MOVE_SPEED * dt);
