@@ -50,7 +50,30 @@ const FALLBACK_VEHICLES = [
   { "id": "byd-sealu-h", "type": "car", "name": "BYD Seal U", "fuelType": "Hibrit", "emissionPerKm": 0.092 },
   { "id": "chery-tiggo7-b", "type": "car", "name": "Chery Tiggo 7 Pro", "fuelType": "Benzin", "emissionPerKm": 0.165 },
   { "id": "chery-tiggo8-b", "type": "car", "name": "Chery Tiggo 8 Pro", "fuelType": "Benzin", "emissionPerKm": 0.175 },
-  { "id": "chery-omoda5-b", "type": "car", "name": "Chery Omoda 5", "fuelType": "Benzin", "emissionPerKm": 0.160 }
+  { "id": "chery-omoda5-b", "type": "car", "name": "Chery Omoda 5", "fuelType": "Benzin", "emissionPerKm": 0.160 },
+  { "id": "mercedes-a-b", "type": "car", "name": "Mercedes A Serisi", "fuelType": "Benzin", "emissionPerKm": 0.132 },
+  { "id": "mercedes-a-d", "type": "car", "name": "Mercedes A Serisi", "fuelType": "Dizel", "emissionPerKm": 0.118 },
+  { "id": "mercedes-b-b", "type": "car", "name": "Mercedes B Serisi", "fuelType": "Benzin", "emissionPerKm": 0.138 },
+  { "id": "mercedes-b-d", "type": "car", "name": "Mercedes B Serisi", "fuelType": "Dizel", "emissionPerKm": 0.122 },
+  { "id": "mercedes-c-b", "type": "car", "name": "Mercedes C Serisi", "fuelType": "Benzin", "emissionPerKm": 0.155 },
+  { "id": "mercedes-c-d", "type": "car", "name": "Mercedes C Serisi", "fuelType": "Dizel", "emissionPerKm": 0.135 },
+  { "id": "mercedes-c-h", "type": "car", "name": "Mercedes C Serisi", "fuelType": "Hibrit", "emissionPerKm": 0.118 },
+  { "id": "mercedes-d-b", "type": "car", "name": "Mercedes D Serisi", "fuelType": "Benzin", "emissionPerKm": 0.165 },
+  { "id": "mercedes-d-d", "type": "car", "name": "Mercedes D Serisi", "fuelType": "Dizel", "emissionPerKm": 0.145 },
+  { "id": "mercedes-e-b", "type": "car", "name": "Mercedes E Serisi", "fuelType": "Benzin", "emissionPerKm": 0.172 },
+  { "id": "mercedes-e-d", "type": "car", "name": "Mercedes E Serisi", "fuelType": "Dizel", "emissionPerKm": 0.148 },
+  { "id": "mercedes-e-h", "type": "car", "name": "Mercedes E Serisi", "fuelType": "Hibrit", "emissionPerKm": 0.125 },
+  { "id": "audi-a3-b", "type": "car", "name": "Audi A3", "fuelType": "Benzin", "emissionPerKm": 0.128 },
+  { "id": "audi-a3-d", "type": "car", "name": "Audi A3", "fuelType": "Dizel", "emissionPerKm": 0.112 },
+  { "id": "audi-a4-b", "type": "car", "name": "Audi A4", "fuelType": "Benzin", "emissionPerKm": 0.145 },
+  { "id": "audi-a4-d", "type": "car", "name": "Audi A4", "fuelType": "Dizel", "emissionPerKm": 0.128 },
+  { "id": "audi-a5-b", "type": "car", "name": "Audi A5", "fuelType": "Benzin", "emissionPerKm": 0.152 },
+  { "id": "audi-a5-d", "type": "car", "name": "Audi A5", "fuelType": "Dizel", "emissionPerKm": 0.132 },
+  { "id": "audi-a6-b", "type": "car", "name": "Audi A6", "fuelType": "Benzin", "emissionPerKm": 0.168 },
+  { "id": "audi-a6-d", "type": "car", "name": "Audi A6", "fuelType": "Dizel", "emissionPerKm": 0.142 },
+  { "id": "audi-q3-b", "type": "car", "name": "Audi Q3", "fuelType": "Benzin", "emissionPerKm": 0.155 },
+  { "id": "audi-q5-b", "type": "car", "name": "Audi Q5", "fuelType": "Benzin", "emissionPerKm": 0.175 },
+  { "id": "audi-q5-d", "type": "car", "name": "Audi Q5", "fuelType": "Dizel", "emissionPerKm": 0.152 }
 ];
 
 /**

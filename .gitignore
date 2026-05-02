@@ -1,2 +1,14 @@
-T4P_Sponsorluk copy.pdf
+# macOS
 .DS_Store
+*.swp
+
+# PDFs (sponsorship docs, not needed in repo)
+T4P_Sponsorluk copy.pdf
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# Rules (local dev only)
+Rules.md

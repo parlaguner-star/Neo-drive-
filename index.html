@@ -28,6 +28,7 @@
       <a href="index.html" class="navbar-logo">
         <img src="./assets/img/aci_okullari_logo.png" alt="Açı Okulları Robotics Logo">
         <span class="logo-text-group">
+          <span class="logo-school-name">Açı Lisesi</span>
           <span class="logo-project-name">Yeşil <span>Kilometreler</span></span>
         </span>
       </a>
@@ -132,9 +133,12 @@
           </div>
           <div style="text-align: center; margin-top: 1.5rem;">
             <p id="donationSpendText" style="margin-bottom: 1rem; font-weight: 600; display: none;"></p>
-            <a href="https://fonzip.com/cekul/kampanya/yesil-kilometreler" target="_blank" rel="noopener noreferrer" id="donationButton" class="btn-secondary" style="display: none;">
+            <a href="https://fonzip.com/cekul/kampanya/yesil-kilometreler" onclick="donateAndGrow(); return false;" id="donationButton" class="btn-secondary" style="display: none;">
               Açı Ormanına Bağış Yap
             </a>
+            <p style="margin-top: 0.75rem; font-size: 0.95rem; color: var(--color-primary); font-weight: 600;">
+              Toplam bağışçı ağacı: <span id="total-forest-trees">0</span> 🌳
+            </p>
           </div>
         </div>
 
@@ -193,7 +197,7 @@
   <footer class="footer">
     <div class="footer-content">
       <p data-i18n="footer_p1">
-        Bu website, <strong>Tech4Peace FIRST Robotik Takımı</strong> ve <strong>Yeşil Okul Projesi</strong>
+        Bu web sitesi, <strong>Açı Okulları Robotik Takımı</strong>, <strong>Tech4Peace</strong>, ve <strong>Yeşil Okul Projesi</strong>
         öğrencileri tarafından geliştirilmiştir.
       </p>
       <div class="w-full flex flex-col md:flex-row justify-between items-center gap-4 text-sm mt-4 text-gray-400">
@@ -234,6 +238,94 @@
   <script src="./assets/js/animations.js?v=1.0.3"></script>
   <script src="./assets/js/calculator.js?v=1.0.3"></script>
   <script src="./assets/js/ui.js?v=1.0.3"></script>
+
+  <!-- ═══ VIRTUAL FOREST MODAL ═══ -->
+  <style>
+    #forest-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #000;
+    }
+    #forest-modal iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    #forest-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 8px 20px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #forest-close-btn:hover {
+      background: rgba(180, 40, 40, 0.75);
+    }
+  </style>
+
+  <div id="forest-modal" style="display:none;">
+    <button id="forest-close-btn" onclick="closeForest()">✕ Çıkış</button>
+    <iframe id="forest-iframe" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    /* ── Forest Modal Integration ── */
+    (function () {
+      /* SNIPPET D: On page load — restore counter from localStorage */
+      var stored = parseInt(localStorage.getItem('aciorman_trees'), 10) || 0;
+      var counterEl = document.getElementById('total-forest-trees');
+      if (counterEl) counterEl.textContent = stored;
+
+      /* SNIPPET B: openForest / closeForest / donateAndGrow */
+      window.openForest = function (treeCount) {
+        var modal = document.getElementById('forest-modal');
+        var iframe = document.getElementById('forest-iframe');
+        var count = parseInt(treeCount, 10) || 0;
+        iframe.src = 'forest.html?trees=' + count;
+        modal.style.display = 'block';
+      };
+
+      window.closeForest = function () {
+        var modal = document.getElementById('forest-modal');
+        var iframe = document.getElementById('forest-iframe');
+        iframe.src = 'about:blank';
+        modal.style.display = 'none';
+      };
+
+      window.donateAndGrow = function () {
+        var current = parseInt(localStorage.getItem('aciorman_trees'), 10) || 0;
+        current += 1;
+        localStorage.setItem('aciorman_trees', current);
+        var el = document.getElementById('total-forest-trees');
+        if (el) el.textContent = current;
+        window.openForest(current);
+        window.open('https://fonzip.com/cekul/kampanya/yesil-kilometreler', '_blank');
+      };
+
+      /* ESC closes modal when focus is on parent page */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && document.getElementById('forest-modal').style.display === 'block') {
+          closeForest();
+        }
+      });
+    })();
+  </script>
+
 </body>
 
 </html>

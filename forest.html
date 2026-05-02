@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yeşil Kilometreler — Sanal Orman</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { overflow: hidden; background: #000; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    canvas { display: block; }
+
+    #overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    #tree-counter {
+      position: absolute;
+      top: 24px; left: 24px;
+      background: rgba(10, 42, 12, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(120, 200, 130, 0.25);
+      border-radius: 14px;
+      padding: 14px 22px;
+      color: #d4f5d0;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    #tree-counter.pulse {
+      transform: scale(1.08);
+    }
+    #tree-counter .icon {
+      font-size: 26px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+    #tree-counter .label { opacity: 0.7; font-weight: 400; font-size: 14px; }
+    #tree-counter .count {
+      font-size: 28px;
+      font-weight: 800;
+      color: #8eff8a;
+      text-shadow: 0 0 18px rgba(100, 255, 100, 0.35);
+      min-width: 36px;
+      text-align: center;
+    }
+
+    #controls-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 10px 24px;
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    #controls-hint kbd {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 5px;
+      padding: 1px 7px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 2px;
+    }
+    #controls-hint .sep {
+      display: inline-block;
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.2);
+      margin: 0 12px;
+      vertical-align: middle;
+    }
+
+    #crosshair {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px; height: 20px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    #crosshair::before, #crosshair::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,255,255,0.5);
+      border-radius: 1px;
+    }
+    #crosshair::before {
+      top: 50%; left: 0;
+      width: 100%; height: 2px;
+      transform: translateY(-50%);
+    }
+    #crosshair::after {
+      left: 50%; top: 0;
+      width: 2px; height: 100%;
+      transform: translateX(-50%);
+    }
+    #crosshair.visible { opacity: 1; }
+
+    #lock-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(5, 20, 8, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      cursor: pointer;
+      transition: opacity 0.35s;
+    }
+    #lock-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #lock-screen .title {
+      font-size: 52px;
+      margin-bottom: 4px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    }
+    #lock-screen h2 {
+      color: #b8f0b4;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    #lock-screen p {
+      color: rgba(200, 240, 200, 0.6);
+      font-size: 14px;
+      margin-top: -6px;
+    }
+    #lock-btn {
+      pointer-events: all;
+      margin-top: 12px;
+      padding: 14px 40px;
+      background: linear-gradient(135deg, #2e7d32, #43a047);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: 0 6px 28px rgba(30, 90, 40, 0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.5px;
+    }
+    #lock-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(30, 90, 40, 0.65), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    #lock-btn:active { transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <div id="overlay">
+    <div id="tree-counter">
+      <span class="icon">🌳</span>
+      <span class="label">Ormandaki Ağaç:</span>
+      <span class="count" id="count-num">0</span>
+    </div>
+
+    <div id="crosshair"></div>
+
+    <div id="controls-hint">
+      Hareket: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+      <span class="sep"></span>
+      Bak: Fare
+      <span class="sep"></span>
+      Çıkış: <kbd>ESC</kbd>
+    </div>
+  </div>
+
+  <div id="lock-screen">
+    <div class="title">🌲</div>
+    <h2>Ormana Geri Dön</h2>
+    <p>Sanal ormanı keşfetmek için tıklayın</p>
+    <button id="lock-btn">Ormana Gir</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    /* Read tree count from URL ?trees= param (set by parent page modal) */
+    (function () {
+      var p = new URLSearchParams(window.location.search);
+      var n = parseInt(p.get('trees'), 10);
+      if (!isNaN(n) && n > 0) window.forestTreeCount = n;
+    })();
+  </script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ──────────────────────────────────────
+         GLOBAL API
+      ────────────────────────────────────── */
+      if (typeof window.forestTreeCount === 'undefined') {
+        window.forestTreeCount = 10;
+      }
+
+      var GRID           = 100;
+      var HALF            = GRID / 2;
+      var PLAYER_H        = 1.7;
+      var MOVE_SPEED      = 5;
+      var TREE_RADIUS     = 1.5;
+      var FOG_NEAR        = 20;
+      var FOG_FAR         = 80;
+      var SHADOW_MAP_SIZE = 1024;
+
+      var treeMeshes   = [];
+      var treePositions = [];
+      var animatingTrees = [];
+
+      /* ──────────────────────────────────────
+         RENDERER
+      ────────────────────────────────────── */
+      var renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.1;
+      document.body.appendChild(renderer.domElement);
+
+      /* ──────────────────────────────────────
+         SCENE
+      ────────────────────────────────────── */
+      var scene = new THREE.Scene();
+      scene.fog = new THREE.Fog(0xc8e6c9, FOG_NEAR, FOG_FAR);
+      scene.background = new THREE.Color(0xc8e6c9);
+
+      /* ──────────────────────────────────────
+         CAMERA
+      ────────────────────────────────────── */
+      var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 200);
+      camera.position.set(0, PLAYER_H, 0);
+
+      /* ──────────────────────────────────────
+         SKY DOME
+      ────────────────────────────────────── */
+      (function createSky() {
+        var skyGeo = new THREE.SphereGeometry(120, 32, 20);
+        var count = skyGeo.attributes.position.count;
+        var colors = new Float32Array(count * 3);
+        var topColor = new THREE.Color(0x5dadec);
+        var botColor = new THREE.Color(0xe8f5e9);
+        var c = new THREE.Color();
+        for (var i = 0; i < count; i++) {
+          var y = skyGeo.attributes.position.getY(i);
+          var t = Math.max(0, y / 120);
+          c.copy(botColor).lerp(topColor, t);
+          colors[i * 3] = c.r;
+          colors[i * 3 + 1] = c.g;
+          colors[i * 3 + 2] = c.b;
+        }
+        skyGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        var skyMat = new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.BackSide });
+        var sky = new THREE.Mesh(skyGeo, skyMat);
+        scene.add(sky);
+      })();
+
+      /* ──────────────────────────────────────
+         GROUND
+      ────────────────────────────────────── */
+      (function createGround() {
+        var groundGeo = new THREE.PlaneGeometry(GRID * 3, GRID * 3, 1, 1);
+        var groundMat = new THREE.MeshLambertMaterial({ color: 0x2d5a1b });
+        var ground = new THREE.Mesh(groundGeo, groundMat);
+        ground.rotation.x = -Math.PI / 2;
+        ground.receiveShadow = true;
+        scene.add(ground);
+      })();
+
+      /* ──────────────────────────────────────
+         LIGHTS
+      ────────────────────────────────────── */
+      (function createLights() {
+        var ambient = new THREE.AmbientLight(0xb0d4a8, 0.55);
+        scene.add(ambient);
+
+        var hemi = new THREE.HemisphereLight(0x87ceeb, 0x2d5a1b, 0.35);
+        scene.add(hemi);
+
+        var sun = new THREE.DirectionalLight(0xfff5e0, 0.9);
+        sun.position.set(30, 50, 20);
+        sun.castShadow = true;
+        sun.shadow.mapSize.width = SHADOW_MAP_SIZE;
+        sun.shadow.mapSize.height = SHADOW_MAP_SIZE;
+        sun.shadow.camera.left = -60;
+        sun.shadow.camera.right = 60;
+        sun.shadow.camera.top = 60;
+        sun.shadow.camera.bottom = -60;
+        sun.shadow.camera.near = 0.5;
+        sun.shadow.camera.far = 150;
+        sun.shadow.bias = -0.001;
+        sun.shadow.normalBias = 0.02;
+        scene.add(sun);
+      })();
+
+      /* ──────────────────────────────────────
+         SHARED TREE MATERIALS
+      ────────────────────────────────────── */
+      var trunkColors = [0x5d3a1a, 0x6b4423, 0x4e2f14, 0x7a5230];
+      var canopyColors = [0x2e7d32, 0x388e3c, 0x1b5e20, 0x4caf50, 0x33691e, 0x558b2f, 0x43a047, 0x66bb6a];
+
+      var trunkMaterials = trunkColors.map(function (c) {
+        return new THREE.MeshLambertMaterial({ color: c });
+      });
+      var canopyMaterials = canopyColors.map(function (c) {
+        return new THREE.MeshLambertMaterial({ color: c });
+      });
+
+      /* ──────────────────────────────────────
+         TREE GENERATION
+      ────────────────────────────────────── */
+      function randomInGrid() {
+        return (Math.random() - 0.5) * GRID;
+      }
+
+      function isTooClose(x, z, minDist) {
+        for (var i = 0; i < treePositions.length; i++) {
+          var p = treePositions[i];
+          var dx = p.x - x;
+          var dz = p.z - z;
+          if (dx * dx + dz * dz < minDist * minDist) return true;
+        }
+        return false;
+      }
+
+      function pickRandom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      function createTree(x, z, animated) {
+        var group = new THREE.Group();
+        group.position.set(x, 0, z);
+
+        var scaleBase = 0.7 + Math.random() * 0.6;
+        var treeType = Math.random();
+
+        var trunkMat = pickRandom(trunkMaterials);
+        var canopyMat = pickRandom(canopyMaterials);
+
+        if (treeType < 0.4) {
+          /* Pine / cone tree */
+          var trunkH = 2.5 * scaleBase;
+          var trunkR = 0.18 * scaleBase;
+          var trunkGeo = new THREE.CylinderGeometry(trunkR * 0.7, trunkR, trunkH, 6);
+          var trunk = new THREE.Mesh(trunkGeo, trunkMat);
+          trunk.position.y = trunkH / 2;
+          trunk.castShadow = true;
+          group.add(trunk);
+
+          var layers = 2 + Math.floor(Math.random() * 2);
+          for (var l = 0; l < layers; l++) {
+            var cR = (1.8 - l * 0.4) * scaleBase;
+            var cH = (2.0 - l * 0.3) * scaleBase;
+            var coneGeo = new THREE.ConeGeometry(cR, cH, 7);
+            var cone = new THREE.Mesh(coneGeo, canopyMat);
+            cone.position.y = trunkH + l * cH * 0.55 + cH * 0.3;
+            cone.castShadow = true;
+            group.add(cone);
+          }
+        } else if (treeType < 0.75) {
+          /* Round / deciduous tree */
+          var trunkH2 = 3.0 * scaleBase;
+          var trunkR2 = 0.2 * scaleBase;
+          var trunkGeo2 = new THREE.CylinderGeometry(trunkR2 * 0.6, trunkR2, trunkH2, 6);
+          var trunk2 = new THREE.Mesh(trunkGeo2, trunkMat);
+          trunk2.position.y = trunkH2 / 2;
+          trunk2.castShadow = true;
+          group.add(trunk2);
+
+          var sphereR = (1.6 + Math.random() * 0.8) * scaleBase;
+          var sphereGeo = new THREE.IcosahedronGeometry(sphereR, 1);
+          var sphere = new THREE.Mesh(sphereGeo, canopyMat);
+          sphere.position.y = trunkH2 + sphereR * 0.7;
+          sphere.castShadow = true;
+          group.add(sphere);
+        } else {
+          /* Tall slim tree */
+          var trunkH3 = 4.0 * scaleBase;
+          var trunkR3 = 0.14 * scaleBase;
+          var trunkGeo3 = new THREE.CylinderGeometry(trunkR3 * 0.5, trunkR3, trunkH3, 5);
+          var trunk3 = new THREE.Mesh(trunkGeo3, trunkMat);
+          trunk3.position.y = trunkH3 / 2;
+          trunk3.castShadow = true;
+          group.add(trunk3);
+
+          var topR = (1.1 + Math.random() * 0.5) * scaleBase;
+          var topH = (2.8 + Math.random()) * scaleBase;
+          var topGeo = new THREE.ConeGeometry(topR, topH, 6);
+          var top = new THREE.Mesh(topGeo, canopyMat);
+          top.position.y = trunkH3 + topH * 0.35;
+          top.castShadow = true;
+          group.add(top);
+        }
+
+        /* Random Y rotation */
+        group.rotation.y = Math.random() * Math.PI * 2;
+
+        /* Grow animation setup */
+        if (animated) {
+          group.scale.set(0, 0, 0);
+          animatingTrees.push({
+            mesh: group,
+            startTime: performance.now(),
+            duration: 500
+          });
+        }
+
+        scene.add(group);
+        treeMeshes.push(group);
+        treePositions.push({ x: x, z: z });
+      }
+
+      function spawnTrees(n) {
+        var animated = treeMeshes.length > 0;
+        var placed = 0;
+        var attempts = 0;
+        while (placed < n && attempts < n * 30) {
+          var x = randomInGrid();
+          var z = randomInGrid();
+          /* Don't place on top of the player spawn */
+          if (Math.abs(x) < 3 && Math.abs(z) < 3) { attempts++; continue; }
+          if (!isTooClose(x, z, 2.5)) {
+            createTree(x, z, animated);
+            placed++;
+          }
+          attempts++;
+        }
+        /* If we couldn't avoid overlap after many attempts, force-place remaining */
+        while (placed < n) {
+          var fx = randomInGrid();
+          var fz = randomInGrid();
+          createTree(fx, fz, animated);
+          placed++;
+        }
+        updateCounterUI();
+      }
+
+      /* ──────────────────────────────────────
+         DECORATIVE GROUND DETAILS
+      ────────────────────────────────────── */
+      (function createGroundDetail() {
+        var grassGeo = new THREE.BufferGeometry();
+        var positions = [];
+        var colors = [];
+        var c = new THREE.Color();
+        for (var i = 0; i < 3000; i++) {
+          var x = (Math.random() - 0.5) * GRID;
+          var z = (Math.random() - 0.5) * GRID;
+          var h = 0.1 + Math.random() * 0.35;
+          positions.push(x - 0.03, 0.01, z);
+          positions.push(x + 0.03, 0.01, z);
+          positions.push(x, h, z);
+          var shade = 0.15 + Math.random() * 0.2;
+          c.setHSL(0.3, 0.6 + Math.random() * 0.3, shade);
+          for (var v = 0; v < 3; v++) {
+            colors.push(c.r, c.g, c.b);
+          }
+        }
+        grassGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        grassGeo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+        var grassMat = new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide });
+        var grassMesh = new THREE.Mesh(grassGeo, grassMat);
+        scene.add(grassMesh);
+      })();
+
+      /* ──────────────────────────────────────
+         POINTER LOCK CONTROLS (manual)
+      ────────────────────────────────────── */
+      var euler = new THREE.Euler(0, 0, 0, 'YXZ');
+      var isLocked = false;
+      var PI_2 = Math.PI / 2;
+
+      var lockScreen = document.getElementById('lock-screen');
+      var lockBtn = document.getElementById('lock-btn');
+      var crosshair = document.getElementById('crosshair');
+
+      function requestLock() {
+        renderer.domElement.requestPointerLock();
+      }
+
+      lockBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        requestLock();
+      });
+      lockScreen.addEventListener('click', requestLock);
+
+      document.addEventListener('pointerlockchange', function () {
+        isLocked = !!document.pointerLockElement;
+        if (isLocked) {
+          lockScreen.classList.add('hidden');
+          crosshair.classList.add('visible');
+        } else {
+          lockScreen.classList.remove('hidden');
+          crosshair.classList.remove('visible');
+        }
+      });
+
+      document.addEventListener('mousemove', function (e) {
+        if (!isLocked) return;
+        var mx = e.movementX || 0;
+        var my = e.movementY || 0;
+        euler.setFromQuaternion(camera.quaternion);
+        euler.y -= mx * 0.002;
+        euler.x -= my * 0.002;
+        euler.x = Math.max(-PI_2, Math.min(PI_2, euler.x));
+        camera.quaternion.setFromEuler(euler);
+      });
+
+      /* ──────────────────────────────────────
+         KEYBOARD INPUT
+      ────────────────────────────────────── */
+      var keys = {};
+      document.addEventListener('keydown', function (e) { keys[e.code] = true; });
+      document.addEventListener('keyup', function (e) { keys[e.code] = false; });
+
+      /* ──────────────────────────────────────
+         MOVEMENT WITH COLLISION
+      ────────────────────────────────────── */
+      var moveDir = new THREE.Vector3();
+      var forward = new THREE.Vector3();
+      var right = new THREE.Vector3();
+
+      function updateMovement(dt) {
+        if (!isLocked) return;
+
+        moveDir.set(0, 0, 0);
+        camera.getWorldDirection(forward);
+        forward.y = 0;
+        forward.normalize();
+        right.crossVectors(forward, new THREE.Vector3(0, -1, 0)).normalize();
+
+        if (keys['KeyW'] || keys['ArrowUp'])    moveDir.add(forward);
+        if (keys['KeyS'] || keys['ArrowDown'])   moveDir.sub(forward);
+        if (keys['KeyA'] || keys['ArrowLeft'])    moveDir.sub(right);
+        if (keys['KeyD'] || keys['ArrowRight'])   moveDir.add(right);
+
+        if (moveDir.lengthSq() === 0) return;
+        moveDir.normalize().multiplyScalar(MOVE_SPEED * dt);
+
+        var newX = camera.position.x + moveDir.x;
+        var newZ = camera.position.z + moveDir.z;
+
+        /* collision check */
+        var blocked = false;
+        for (var i = 0; i < treePositions.length; i++) {
+          var p = treePositions[i];
+          var dx = newX - p.x;
+          var dz = newZ - p.z;
+          if (dx * dx + dz * dz < TREE_RADIUS * TREE_RADIUS) {
+            blocked = true;
+            break;
+          }
+        }
+
+        if (!blocked) {
+          camera.position.x = newX;
+          camera.position.z = newZ;
+        } else {
+          /* Try sliding along each axis individually */
+          var slideX = true;
+          var slideZ = true;
+          for (var j = 0; j < treePositions.length; j++) {
+            var pp = treePositions[j];
+            var ddx = newX - pp.x;
+            var ddz = camera.position.z - pp.z;
+            if (ddx * ddx + ddz * ddz < TREE_RADIUS * TREE_RADIUS) slideX = false;
+            ddx = camera.position.x - pp.x;
+            ddz = newZ - pp.z;
+            if (ddx * ddx + ddz * ddz < TREE_RADIUS * TREE_RADIUS) slideZ = false;
+          }
+          if (slideX) camera.position.x = newX;
+          if (slideZ) camera.position.z = newZ;
+        }
+
+        camera.position.y = PLAYER_H;
+      }
+
+      /* ──────────────────────────────────────
+         GROW ANIMATION
+      ────────────────────────────────────── */
+      function updateAnimations(now) {
+        for (var i = animatingTrees.length - 1; i >= 0; i--) {
+          var anim = animatingTrees[i];
+          var elapsed = now - anim.startTime;
+          var progress = Math.min(elapsed / anim.duration, 1);
+          /* easeOutBack */
+          var c1 = 1.70158;
+          var c3 = c1 + 1;
+          var t = 1 + c3 * Math.pow(progress - 1, 3) + c1 * Math.pow(progress - 1, 2);
+          anim.mesh.scale.set(t, t, t);
+          if (progress >= 1) {
+            animatingTrees.splice(i, 1);
+          }
+        }
+      }
+
+      /* ──────────────────────────────────────
+         UI
+      ────────────────────────────────────── */
+      var countEl = document.getElementById('count-num');
+      var counterBox = document.getElementById('tree-counter');
+
+      function updateCounterUI() {
+        countEl.textContent = treeMeshes.length;
+        counterBox.classList.add('pulse');
+        setTimeout(function () { counterBox.classList.remove('pulse'); }, 300);
+      }
+
+      /* ──────────────────────────────────────
+         PUBLIC API: window.addTree(n)
+      ────────────────────────────────────── */
+      window.addTree = function (n) {
+        n = Math.max(1, Math.floor(n) || 1);
+        spawnTrees(n);
+      };
+
+      /* ──────────────────────────────────────
+         POSTMESSAGE BRIDGE (parent → iframe)
+      ────────────────────────────────────── */
+      window.addEventListener('message', function (e) {
+        if (e.data && e.data.type === 'ADD_TREE') {
+          window.addTree(e.data.count || 1);
+        }
+      });
+
+      /* ──────────────────────────────────────
+         INITIAL SPAWN
+      ────────────────────────────────────── */
+      /* Fill the forest with 200 background trees */
+      spawnTrees(200);
+      /* Then place the user's configured count on top */
+      spawnTrees(window.forestTreeCount);
+
+      /* ──────────────────────────────────────
+         RESIZE
+      ────────────────────────────────────── */
+      window.addEventListener('resize', function () {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      /* ──────────────────────────────────────
+         RENDER LOOP
+      ────────────────────────────────────── */
+      var clock = new THREE.Clock();
+
+      function animate() {
+        requestAnimationFrame(animate);
+        var dt = Math.min(clock.getDelta(), 0.1);
+        var now = performance.now();
+
+        updateMovement(dt);
+        updateAnimations(now);
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+    })();
+  </script>
+</body>
+</html>
