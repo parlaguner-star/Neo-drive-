@@ -5,6 +5,7 @@ const translations = {
         nav_team: "Tech4Peace",
         nav_green: "Yeşil Okul",
         nav_project: "Proje",
+        nav_donation: "🌳 Bağış Yap",
         nav_alt_title: "Ana Navigasyon",
         nav_logo_alt: "Yeşil Kilometreler Ana Sayfa",
 
@@ -30,9 +31,11 @@ const translations = {
         result_initial: "Hesaplama sonucunuz burada görünecek.",
         result_note: "* Hesaplama değerleri yaklaşık olup, proje geliştikçe güncellenecektir.",
         result_trees: "AĞAÇ",
-        donation_spending_initial: "Açı Ormanı'na bağış yaparak bu ağaçları doğaya kazandırabilirsiniz!",
-        donation_target: "Açı Ormanı'na bağış yaparak bu ağaçları doğaya kazandırabilirsiniz!",
-        btn_donation: "Açı Ormanına Bağış Yap",
+        donation_spending_initial: "2. Açı Ormanı'na bağış yaparak bu ağaçları doğaya kazandırabilirsiniz!",
+        donation_target: "2. Açı Ormanı'na bağış yaparak bu ağaçları doğaya kazandırabilirsiniz!",
+        btn_donation: "🌳 2. Açı Ormanı'na Bağış Yap",
+        floating_title: "2. Açı Ormanı",
+        floating_sub: "Bağış Yap →",
 
         // Tree Visualization
         tree_h3: "Ağaçları Gör!",
@@ -203,6 +206,7 @@ const translations = {
         nav_team: "Tech4Peace",
         nav_green: "Green School",
         nav_project: "Project",
+        nav_donation: "🌳 Donate",
         nav_alt_title: "Main Navigation",
         nav_logo_alt: "Green Kilometers Home",
 
@@ -228,9 +232,11 @@ const translations = {
         result_initial: "Your calculation result will appear here.",
         result_note: "* Calculation values are estimates and will be updated as the project develops.",
         result_trees: "TREES",
-        donation_spending_initial: "You can bring these trees to life by donating to Açı Forest!",
-        donation_target: "Donate to Açı Forest to plant {trees} trees",
-        btn_donation: "Donate to Açı Forest",
+        donation_spending_initial: "You can bring these trees to life by donating to the 2nd Açı Forest!",
+        donation_target: "Donate to the 2nd Açı Forest to plant {trees} trees",
+        btn_donation: "🌳 Donate to 2nd Açı Forest",
+        floating_title: "2nd Açı Forest",
+        floating_sub: "Donate →",
 
         // Tree Visualization
         tree_h3: "See the Trees!",

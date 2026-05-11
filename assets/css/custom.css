@@ -815,6 +815,181 @@ body::before {
   box-shadow: var(--shadow-xl);
 }
 
+/* Navbar Donation Button */
+.nav-donation-btn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 1rem !important;
+  background: linear-gradient(135deg, #DC2626, #EF4444) !important;
+  color: white !important;
+  border-radius: 2rem !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: white !important;
+  animation: navPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.nav-donation-btn:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.5) !important;
+  background: linear-gradient(135deg, #B91C1C, #DC2626) !important;
+  color: white !important;
+}
+
+.nav-donation-btn::after {
+  display: none !important;
+}
+
+@keyframes navPulse {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+/* Pulsing Donation Button (in result section) */
+.btn-donation-pulse {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, #DC2626, #EF4444);
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  animation: donationBlink 1.5s ease-in-out infinite;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+  transition: transform 0.2s;
+}
+
+.btn-donation-pulse:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.55);
+  animation-play-state: paused;
+}
+
+@keyframes donationBlink {
+  0%, 100% {
+    background: linear-gradient(135deg, #DC2626, #EF4444);
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    background: linear-gradient(135deg, #EF4444, #FCA5A5);
+    box-shadow: 0 6px 24px rgba(220, 38, 38, 0.65);
+    transform: scale(1.04);
+  }
+}
+
+/* Floating Donation Widget */
+.floating-donation {
+  position: fixed;
+  bottom: 6rem;
+  right: 1.5rem;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #DC2626, #EF4444);
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(220, 38, 38, 0.45);
+  overflow: hidden;
+  animation: floatIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards, floatPulse 3s ease-in-out 0.6s infinite;
+  max-width: 200px;
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatPulse {
+  0%, 100% { box-shadow: 0 8px 30px rgba(220, 38, 38, 0.45); }
+  50% { box-shadow: 0 8px 40px rgba(220, 38, 38, 0.7); }
+}
+
+.floating-donation-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  flex: 1;
+  transition: background 0.2s;
+}
+
+.floating-donation-link:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.floating-donation-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.floating-donation-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.floating-donation-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: white;
+  -webkit-text-fill-color: white !important;
+}
+
+.floating-donation-sub {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.85);
+  -webkit-text-fill-color: rgba(255,255,255,0.85) !important;
+  font-weight: 600;
+}
+
+.floating-donation-close {
+  background: rgba(0,0,0,0.15);
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 0.6rem;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+
+.floating-donation-close:hover {
+  background: rgba(0,0,0,0.25);
+}
+
+@media (max-width: 768px) {
+  .floating-donation {
+    bottom: 5rem;
+    right: 1rem;
+    max-width: 180px;
+  }
+
+  .floating-donation-title {
+    font-size: 0.8rem;
+  }
+
+  .floating-donation-sub {
+    font-size: 0.7rem;
+  }
+}
+
 /* Language Switcher */
 .lang-switcher {
   display: flex;

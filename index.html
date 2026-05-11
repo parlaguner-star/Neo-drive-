@@ -44,6 +44,9 @@
         <li><a href="about-team.html" data-i18n="nav_team">Tech4Peace</a></li>
         <li><a href="about-green-school.html" data-i18n="nav_green">Yeşil Okul</a></li>
         <li><a href="project.html" data-i18n="nav_project">Proje</a></li>
+        <li>
+          <a href="https://fonzip.com/cekul/kampanya/yesil-kilometreler" target="_blank" rel="noopener noreferrer" class="nav-donation-btn" data-i18n="nav_donation">🌳 Bağış Yap</a>
+        </li>
         <li class="lang-switcher">
           <button onclick="setLanguage('tr')" class="lang-btn" data-lang="tr" aria-label="Türkçe">TR</button>
           <span aria-hidden="true">/</span>
@@ -133,8 +136,8 @@
           </div>
           <div style="text-align: center; margin-top: 1.5rem;">
             <p id="donationSpendText" style="margin-bottom: 1rem; font-weight: 600; display: none;"></p>
-            <a href="https://fonzip.com/cekul/kampanya/yesil-kilometreler" onclick="donateAndGrow(); return false;" id="donationButton" class="btn-secondary" style="display: none;">
-              Açı Ormanına Bağış Yap
+            <a href="https://fonzip.com/cekul/kampanya/yesil-kilometreler" target="_blank" rel="noopener noreferrer" onclick="donateAndGrow(); return true;" id="donationButton" class="btn-donation-pulse" style="display: none;">
+              🌳 2. Açı Ormanı'na Bağış Yap
             </a>
             <p style="margin-top: 0.75rem; font-size: 0.95rem; color: var(--color-primary); font-weight: 600;">
               Toplam bağışçı ağacı: <span id="total-forest-trees">0</span> 🌳
@@ -211,6 +214,18 @@
       </div>
     </div>
   </footer>
+
+  <!-- Floating Donation Widget -->
+  <div id="floatingDonation" class="floating-donation">
+    <a href="https://fonzip.com/cekul/kampanya/yesil-kilometreler" target="_blank" rel="noopener noreferrer" class="floating-donation-link">
+      <div class="floating-donation-icon">🌳</div>
+      <div class="floating-donation-text">
+        <span class="floating-donation-title" data-i18n="floating_title">2. Açı Ormanı</span>
+        <span class="floating-donation-sub" data-i18n="floating_sub">Bağış Yap →</span>
+      </div>
+    </a>
+    <button class="floating-donation-close" onclick="document.getElementById('floatingDonation').style.display='none'" aria-label="Kapat">×</button>
+  </div>
 
   <!-- Scroll to Top Button (hidden by default) -->
   <button id="scrollToTop" style="
