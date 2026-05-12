@@ -136,7 +136,7 @@
           </div>
           <div style="text-align: center; margin-top: 1.5rem;">
             <p id="donationSpendText" style="margin-bottom: 1rem; font-weight: 600; display: none;"></p>
-            <a href="https://fonzip.com/cekul/kampanya/yesil-kilometreler" target="_blank" rel="noopener noreferrer" onclick="donateAndGrow(); return true;" id="donationButton" class="btn-donation-pulse" style="display: none;">
+            <a href="https://fonzip.com/cekul/kampanya/yesil-kilometreler" target="_blank" rel="noopener noreferrer" id="donationButton" class="btn-donation-pulse" style="display: none;">
               🌳 2. Açı Ormanı'na Bağış Yap
             </a>
             <p style="margin-top: 0.75rem; font-size: 0.95rem; color: var(--color-primary); font-weight: 600;">
@@ -323,12 +323,13 @@
       };
 
       window.donateAndGrow = function () {
-        var current = parseInt(localStorage.getItem('aciorman_trees'), 10) || 0;
-        current += 1;
-        localStorage.setItem('aciorman_trees', current);
-        var el = document.getElementById('total-forest-trees');
-        if (el) el.textContent = current;
-        window.openForest(current);
+        // Sanal orman şimdilik devre dışı — sonraki publish'te aktif edilecek
+        // var current = parseInt(localStorage.getItem('aciorman_trees'), 10) || 0;
+        // current += 1;
+        // localStorage.setItem('aciorman_trees', current);
+        // var el = document.getElementById('total-forest-trees');
+        // if (el) el.textContent = current;
+        // window.openForest(current);
         window.open('https://fonzip.com/cekul/kampanya/yesil-kilometreler', '_blank');
       };
 

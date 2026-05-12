@@ -368,7 +368,7 @@ function displayResult(treesNeeded, totalCO2, vehicle, yearlyKm, year) {
   donationButton.style.display = 'inline-block';
 
   resultSection.classList.add('active');
-  // visualizeTrees(treesNeeded); // Sanal orman şimdilik devre dışı
+  visualizeTrees(treesNeeded);
 
   // Scroll to result section so users see tree count + donation CTA together
   setTimeout(() => {
